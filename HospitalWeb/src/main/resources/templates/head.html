@@ -1,0 +1,105 @@
+<html>
+	<head>
+		
+	<!-- Favicons -->
+	<link th:href="@{/assets/img/benhvienlogo.png}" rel="icon">
+	<link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link
+		th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}"
+		rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link th:href="@{/assets/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/animate.css/animate.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link th:href="@{/assets/css/style.css}" rel="stylesheet">
+	</head>
+	<body>
+		<!-- ======= Top Bar ======= -->
+	<div id="topbar" class="d-flex align-items-center fixed-top">
+		<div class="container d-flex justify-content-between">
+			<div class="contact-info d-flex align-items-center">
+				<i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
+				<i class="bi bi-phone"></i> +1 5589 55488 55
+			</div>
+			<div class="d-none d-lg-flex social-links align-items-center">
+				<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+				<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+				<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+				<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+			</div>
+		</div>
+	</div>
+
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top">
+		<div class="container d-flex align-items-center">
+			<div class="col-md-2">
+				<h1 class="logo me-auto"><a th:href="@{/home}">Medilab</a></h1>
+				<!-- Uncomment below if you prefer to use an image logo -->
+				<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			</div>
+			<!-- SEARCH BAR -->
+			<div class="col-md-5">
+				<div class="header-search">
+					<form th:action="@{/search}" method="get">
+						<input th:value="${name}" name="hotenbacsi" class="input"
+							placeholder="Bác sĩ cần hỗ trợ ...">
+						<button class="search-btn">Search</button>
+					</form>
+				</div>
+			</div>
+			<!-- /SEARCH BAR -->
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+					<li><a class="nav-link scrollto active" href="#hero">Trang Chủ</a></li>
+					<li><a class="nav-link scrollto" href="#about">Giới Thiệu</a></li>
+					<li><a th:if="${session.sessionRole == '3' or session.checkuser == null}" class="nav-link scrollto" href="#services">Tin Tức</a>
+					</li>
+					<li><a th:if="${session.sessionRole == '3' or session.checkuser == null}" class="nav-link scrollto" href="#departments">Chuyên Khoa</a></li>
+					<li><a class="nav-link scrollto" href="#doctors">Bác Sĩ</a></li>
+					<li th:if="${session.sessionRole == '2'}" class="dropdown"><a href="#"><span>Quản Lí</span> <i
+								class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a th:href="@{/qlbenhnhan}">Quản lí Bệnh Nhân</a></li>
+							<li><a th:href="@{/qllich}">Quản lí Lịch Khám</a></li>
+							<li><a th:href="@{/qlhoso}">Quản lí Hồ sơ bệnh án</a></li>
+						</ul>
+					</li>
+					<li><a th:if="${session.checkuser == null}" class="nav-link scrollto" th:href="@{/login}">
+							<span>
+								Đăng Nhập
+							</span>
+						</a>
+					</li>
+					<li><a th:if="${session.checkuser != null}" class="nav-link scrollto" th:href="@{/logout}">
+							<span>
+								Đăng xuất
+							</span>
+						</a>
+					</li>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav><!-- .navbar -->
+
+			<a href="" th:if="${session.checkuser != null}" class="appointment-btn scrollto">
+				<span th:if="${session.sessionRole == '2'}" class="d-none d-md-inline"
+					th:text="Hello +' '+'BS.'+ ${session.sessionName}" style="color: white;">
+				</span>
+				<span th:if="${session.sessionRole == '3'}" class="d-none d-md-inline"
+					th:text="Hello +' '+ ${session.sessionName}" style="color: white;">
+				</span>
+			</a>
+		</div>
+	</header><!-- End Header -->
+	</body>
+</html>

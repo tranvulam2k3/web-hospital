@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        connectionURL="jdbc:sqlserver://localhost:1433;databaseName=HospitalWebsite;encrypt=true;trustServerCertificate=true"
+        userId="sa"
+        password="abc123">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.web.hospital.model" targetProject="HospitalWeb">
+
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="com.web.hospital.mapper"  targetProject="HospitalWeb/src/main/resources">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.web.hospital.mapper"  targetProject="HospitalWeb">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+
+    <table schema="dbo" tableName="phong_kham" domainObjectName="phongkham" >
+
+    </table>
+
+  </context>
+</generatorConfiguration>

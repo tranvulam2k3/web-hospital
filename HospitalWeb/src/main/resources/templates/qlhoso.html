@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>DASHMIN</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="" name="keywords">
+	<meta content="" name="description">
+
+	<!-- Favicon -->
+	<link th:href="@{/img/favicon.ico}" rel="icon">
+
+	<!-- Google Web Fonts -->
+	<link rel="preconnect" th:href="@{https://fonts.googleapis.com}">
+	<link rel="preconnect" th:href="@{https://fonts.gstatic.com}" crossorigin>
+	<link th:href="@{https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap}"
+		rel="stylesheet">
+
+	<!-- Icon Font Stylesheet -->
+	<link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css}" rel="stylesheet">
+	<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet">
+
+	<!-- Libraries Stylesheet -->
+	<link th:href="@{/admin/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+	<link th:href="@{/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet" />
+
+	<!-- Customized Bootstrap Stylesheet -->
+	<link th:href="@{/admin/css/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Template Stylesheet -->
+	<link th:href="@{/admin/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Recent Sales Start -->
+	<div class="container-fluid pt-4 px-4">
+		<div class="bg-light text-center rounded p-4">
+			<div class="d-flex align-items-center justify-content-between mb-4">
+				<h6 class="mb-0">Danh sách Hồ Sơ Bệnh Án</h6>
+				<a th:href="@{/home}">Quay về</a>
+			</div>
+			<form th:action="@{/addMedical}" method="get">
+				<div class="table-responsive">
+				<table class="table text-start align-middle table-bordered table-hover mb-0">
+					<thead>
+						<tr class="text-dark">
+							<th scope="col">ID</th>
+							<th scope="col">Họ tên bệnh nhân</th>
+							<th scope="col">Ngày Khám</th>
+							<th scope="col">Lí do</th>
+							<th scope="col">Chuẩn Đoán</th>
+							<th scope="col">Ghi Chú</th>
+							<th scope="col">Đơn Thuốc</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="list : ${list}">
+							<td th:text="${list.id}"></td>
+							<td th:text="${list.hotenbenhnhan}"></td>
+							<td th:text="${list.ngaykham}"></td>
+							<td th:text="${list.lidokham}"></td>
+							<td th:text="${list.chuandoan}"></td>
+							<td th:text="${list.ghichucuabacsi}"></td>
+							<td th:text="${list.donthuoc}"></td>
+							<td>
+								<a class="btn btn-sm btn-primary" th:href="@{'/edithoso' +'/'+ ${list.id}}">Sửa</a>
+								<a class="btn btn-sm btn-primary" th:href="@{'/edithoso' +'/'+ ${list.id}}">Xóa</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="text-right mt-3">
+					<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addMedicalModal">
+						Thêm
+					</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	<!-- Recent Sales End -->
+</body>
+
+</html>
