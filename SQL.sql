@@ -173,3 +173,13 @@ VALUES (N'Phòng Khám Đa Khoa ABC', N'123 Đường XYZ, Quận 1, TP.HCM', '0
 	 SELECT * FROM phong_kham;
 	 DELETE FROM phong_kham
 WHERE id = 3;
+
+select * from Account
+
+select * from Doctor
+where maKhoa = 2
+
+
+UPDATE Khoa
+SET hinhanhKhoa = 'https://benhviensaigonnamdinh.vn/wp-content/uploads/2023/05/thai-san-sn1-2.jpg'
+WHERE maKhoa=4;
