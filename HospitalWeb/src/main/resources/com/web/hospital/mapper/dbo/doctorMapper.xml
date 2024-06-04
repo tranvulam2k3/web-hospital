@@ -340,4 +340,14 @@
 			VALUES 
 				(#{hotenbacsi},#{namsinh},#{gioitinh},#{sdt},#{email},#{username})
 	</insert>
+
+	<select id="getdoctorbymakhoa" 	 parameterType="com.web.hospital.model.doctor"
+			resultMap="BaseResultMap" >
+		select
+			*
+		from
+			Doctor
+		where
+			makhoa = #{makhoa}
+	</select>
 </mapper>
