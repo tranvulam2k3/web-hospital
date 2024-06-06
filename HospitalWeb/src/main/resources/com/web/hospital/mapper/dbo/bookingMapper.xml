@@ -293,8 +293,8 @@
 	</update>
 	<insert id="save" parameterType="com.web.hospital.model.booking">
 		INSERT INTO
-		Booking(hoTenBenhNhan,namSinh,gioiTinh,SDT,diaChi,email,hoTenBacSi,ngaydat,loiNhan,idd)
-		values(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},#{ngaydat},#{loinhan},#{idd})
+		Booking(hoTenBenhNhan,namSinh,gioiTinh,SDT,diaChi,email,hoTenBacSi,ngaydat,loiNhan,idd,mount,day,id)
+		values(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},null,#{loinhan},#{idd},#{mount},#{date},#{id})
 	</insert>
 	<select id="getnewbooking" parameterType="com.web.hospital.model.booking"
 		resultMap="BaseResultMap">

@@ -38,6 +38,7 @@ public class loginController {
 		}else if(account.getUsername().equals("admin")){
 			return "admin";
 		}else {
+			session.setAttribute("account", checkuser);
 			session.setAttribute("checkuser", checkuser);
 			session.setAttribute("sessionName", checkuser.getName());
 			session.setAttribute("sessionRole", checkuser.getRole());

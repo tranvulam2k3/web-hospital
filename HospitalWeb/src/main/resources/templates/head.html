@@ -81,24 +81,30 @@
 							</span>
 						</a>
 					</li>
-					<li><a th:if="${session.checkuser != null}" class="nav-link scrollto" th:href="@{/logout}">
-							<span>
-								Đăng xuất
-							</span>
-						</a>
-					</li>
+
 				</ul>
 				<i class="bi bi-list mobile-nav-toggle"></i>
 			</nav><!-- .navbar -->
 
-			<a href="" th:if="${session.checkuser != null}" class="appointment-btn scrollto">
+			<nav  th:if="${session.checkuser != null}" >
 				<span th:if="${session.sessionRole == '2'}" class="d-none d-md-inline"
 					th:text="Hello +' '+'BS.'+ ${session.sessionName}" style="color: white;">
 				</span>
-				<span th:if="${session.sessionRole == '3'}" class="d-none d-md-inline"
-					th:text="Hello +' '+ ${session.sessionName}" style="color: white;">
+				<span th:if="${session.sessionRole == '3'}" >
+					<div class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+							<img class="rounded-circle me-lg-2" th:src="@{admin/img/user.jpg}" alt=""
+								 style="width: 40px; height: 40px;">
+							<span class="d-none d-lg-inline-flex">John Doe</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+							<a href="#" class="dropdown-item">My Profile</a>
+							<a href="#" class="dropdown-item">Settings</a>
+							<a th:href="@{/logout}" class="dropdown-item">Log Out</a>
+						</div>
+					</div>
 				</span>
-			</a>
+			</nav>
 		</div>
 	</header><!-- End Header -->
 	</body>

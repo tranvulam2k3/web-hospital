@@ -3,6 +3,8 @@ package com.web.hospital.mapper.dbo;
 import com.web.hospital.model.MedicalVisits;
 import com.web.hospital.model.booking;
 import com.web.hospital.model.bookingExample;
+
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -68,7 +70,8 @@ public interface bookingMapper {
     
     int save(@Param("hotenbenhnhan") String hotenbenhnhan, @Param("namsinh") String namsinh, @Param("gioitinh") String gioitinh,
     		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,
-    		@Param("hotenbacsi") String hotenbacsi,@Param("ngaydat") String ngaydat,@Param("loinhan") String loinhan,@Param("idd") int idd);
+    		@Param("hotenbacsi") String hotenbacsi,@Param("loinhan") String loinhan,@Param("idd") int idd,@Param("mount") int mount,
+            @Param("date") Date date,@Param("id") int id);
 
     booking getnewbooking();
     List<booking> listBookingByidD(@Param("idd") int idd);
