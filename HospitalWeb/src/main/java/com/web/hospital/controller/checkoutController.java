@@ -1,6 +1,7 @@
 package com.web.hospital.controller;
 
 import com.web.hospital.model.Account;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,26 +15,26 @@ import com.web.hospital.model.doctor;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.util.Date;
+
 @Controller
 public class checkoutController {
 
 	@Autowired 
 	bookingMapper bookingMapper;
-	
+
 	@PostMapping("/checkout")
-	public String comfig(Model model,HttpSession session, @ModelAttribute("booking") booking booking) {
-		doctor doc = (doctor) session.getAttribute("doctor");
-		Account account = (Account) session.getAttribute("account");
-		String tenBS = doc.getHotenbacsi();
-		int maBS = doc.getIdd();
-		int getgia = doc.getMount();
-		int id =  account.getId();
-		int save = bookingMapper.save(booking.getHotenbenhnhan(), booking.getNamsinh(), booking.getGioitinh(), booking.getSdt(), booking.getDiachi(), 
-				booking.getEmail(),tenBS,booking.getLoinhan(),maBS,getgia,booking.getDate(),id);
-		booking inf = bookingMapper.getnewbooking();
-		model.addAttribute("inf", inf);
-		return "checkout";
-	}
+	public String processBooking(@ModelAttribute booking bookingInfo, Model model, HttpServletRequest request) {
+	// Thêm thông tin booking vào model để truyền sang view checkout
+	model.addAttribute("inf", bookingInfo);
+
+	//Save thong tin vào session
+	HttpSession session = request.getSession();
+	session.setAttribute("bookingInfo", bookingInfo);
+
+	return "checkout"; // Trả về trang checkout.html
+}
+
 	@GetMapping("/success")
 	public String success() {
 		return "success";
