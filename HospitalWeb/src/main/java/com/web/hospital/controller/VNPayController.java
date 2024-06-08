@@ -73,7 +73,7 @@ public class VNPayController {
                                       bookingInfo.getLoinhan(),
                                       maBS,
                                       bookingInfo.getMount(),
-                                      bookingInfo.getDate(),
+                                      bookingInfo.getDay(),
                                       id );
 
         return paymentStatus == 1 ? "ordersuccess" : "orderfail";

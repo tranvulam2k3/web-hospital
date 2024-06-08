@@ -40,9 +40,10 @@ public class loginController {
 		}else {
 			session.setAttribute("account", checkuser);
 			session.setAttribute("checkuser", checkuser);
+			session.setAttribute("checkID", checkuser.getId());
 			session.setAttribute("sessionName", checkuser.getName());
 			session.setAttribute("sessionRole", checkuser.getRole());
-//			session.setMaxInactiveInterval(5000);
+			session.setMaxInactiveInterval(300);
 			return "redirect:/home";
 		}
 	}

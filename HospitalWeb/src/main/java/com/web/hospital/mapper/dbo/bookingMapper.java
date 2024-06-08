@@ -71,7 +71,7 @@ public interface bookingMapper {
     int save(@Param("hotenbenhnhan") String hotenbenhnhan, @Param("namsinh") String namsinh, @Param("gioitinh") String gioitinh,
     		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,
     		@Param("hotenbacsi") String hotenbacsi,@Param("loinhan") String loinhan,@Param("idd") int idd,@Param("mount") int mount,
-            @Param("date") Date date,@Param("id") int id);
+            @Param("day") Date day,@Param("id") int id);
 
     booking getnewbooking();
     List<booking> listBookingByidD(@Param("idd") int idd);
@@ -83,5 +83,5 @@ public interface bookingMapper {
     int addBooking(@Param("hotenbenhnhan") String hotenbenhnhan,@Param("namsinh") String namsinh,@Param("gioitinh") String gioitinh,
     		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,@Param("hotenbacsi") String hotenbacsi,
     		@Param("ngaydat") String ngaydat,@Param("loinhan") String loinhan,@Param("idd") int idd);
-
+    List<booking> checkBookingbyID(@Param("id") int id);
 }

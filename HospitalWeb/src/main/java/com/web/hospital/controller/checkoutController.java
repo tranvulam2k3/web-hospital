@@ -36,7 +36,29 @@ public class checkoutController {
 }
 
 	@GetMapping("/success")
-	public String success() {
+	public String success(HttpServletRequest request, Model model, booking booking) {
+		HttpSession session = request.getSession();
+
+		booking bookingInfo = (booking) session.getAttribute("bookingInfo");
+		doctor doc = (doctor) session.getAttribute("doctor");
+		Account account = (Account) session.getAttribute("account");
+
+		int maBS = doc.getIdd();
+		int id =  account.getId();
+
+		int saveToDB = bookingMapper.save(bookingInfo.getHotenbenhnhan(),
+				bookingInfo.getNamsinh(),
+				bookingInfo.getGioitinh(),
+				bookingInfo.getSdt(),
+				bookingInfo.getDiachi(),
+				bookingInfo.getEmail(),
+				bookingInfo.getHotenbacsi(),
+				bookingInfo.getLoinhan(),
+				maBS,
+				bookingInfo.getMount(),
+				bookingInfo.getDay(),
+				id );
+
 		return "success";
 	}
 }

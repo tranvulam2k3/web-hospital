@@ -34,30 +34,37 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form" th:action="@{/checkRegister}" method="post">
+				<form class="login100-form validate-form" th:action="@{/checkRegister}" method="post"  th:object="${account}">
 					<span class="login100-form-title p-b-43">
 						Create Account
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate="Name is required">
-						<input class="input100" type="text" name="name">
+						<input class="input100" type="text" th:field="*{name}">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Tên Hiển Thị</span>
 					</div>
+					<div th:if="${#fields.hasErrors('name')}" class="error-container">
+						<div class="error-message" th:errors="*{name}"></div>
+					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="User Name is required">
-						<input class="input100" type="text" name="username">
+						<input class="input100" type="text" th:field="*{username}">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Tên Đăng Nhập</span>
 					</div>
-
+					<div th:if="${#fields.hasErrors('username')}" class="error-container">
+						<div class="error-message" th:errors="*{username}"></div>
+					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="password">
+						<input class="input100" type="password" th:field="*{password}">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Mật Khẩu</span>
 					</div>
-
+					<div th:if="${#fields.hasErrors('password')}" class="error-container">
+						<div class="error-message" th:errors="*{password}"></div>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate="Enter the password">
 						<input class="input100" type="password" name="repassword">
 						<span class="focus-input100"></span>

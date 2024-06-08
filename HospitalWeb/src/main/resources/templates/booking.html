@@ -111,7 +111,7 @@
 						ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
 				</div>
 
-				<form th:action="@{/checkout}" method="post">
+				<form th:action="@{/checkout}" method="post" id="myForm">
 					<div class="row">
 						<div class="col-md-4 form-group">
 							<input type="text" name="hotenbenhnhan" class="form-control" id="hotenbenhnhan" placeholder="Tên Bệnh Nhân"
@@ -132,6 +132,7 @@
 							</select>
 							<div class="validate"></div>
 						</div>
+
 					</div>
 					<br>
 					<div class="row">
@@ -154,7 +155,8 @@
 					<br>
 					<div class="row">
 						<div class="col-md-4 form-group mt-3 mt-md-0">
-							<input type="date" name="date" class="form-control datepicker" id="date">
+							<input type="date" name="day" class="form-control datepicker" id="day" required>
+							<div class="validate"></div>
 						</div>
 						<div class="col-md-4 form-group mt-3 mt-md-0">
 							<input name="hotenbacsi" id="hotenbacsi" class="form-control datepicker"
@@ -178,6 +180,43 @@
 						<button type="submit">ĐẶT LỊCH</button>
 					</div>
 				</form>
+				<script>
+					document.getElementById('myForm').addEventListener('submit', function(event) {
+						const selectElement = document.getElementById('department');
+						const dateElement = document.getElementById('day');
+						let valid = true;
+
+						// Validate gender selection
+						const genderValidateDiv = selectElement.nextElementSibling;
+						if (selectElement.value === '') {
+							genderValidateDiv.innerHTML = '<span class="error">Vui lòng chọn giới tính</span>';
+							valid = false;
+						} else {
+							genderValidateDiv.innerHTML = '';
+						}
+
+						// Validate date selection
+						const dateValidateDiv = dateElement.nextElementSibling;
+						const selectedDate = new Date(dateElement.value);
+						const today = new Date();
+						today.setHours(0, 0, 0, 0);  // Set time to midnight to only compare dates
+
+						if (dateElement.value === '') {
+							dateValidateDiv.innerHTML = '<span class="error">Vui lòng chọn ngày</span>';
+							valid = false;
+						} else if (selectedDate < today) {
+							dateValidateDiv.innerHTML = '<span class="error">Ngày được chọn đã qua, vui lòng chọn ngày khác</span>';
+							valid = false;
+						} else {
+							dateValidateDiv.innerHTML = '';
+						}
+
+						// If any validation failed, prevent form submission
+						if (!valid) {
+							event.preventDefault();
+						}
+					});
+				</script>
 
 			</div>
 		</section><!-- End Appointment Section -->

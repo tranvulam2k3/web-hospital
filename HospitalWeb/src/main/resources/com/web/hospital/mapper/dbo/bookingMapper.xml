@@ -294,7 +294,7 @@
 	<insert id="save" parameterType="com.web.hospital.model.booking">
 		INSERT INTO
 		Booking(hoTenBenhNhan,namSinh,gioiTinh,SDT,diaChi,email,hoTenBacSi,ngaydat,loiNhan,idd,mount,day,id)
-		values(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},null,#{loinhan},#{idd},#{mount},#{date},#{id})
+		values(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},null,#{loinhan},#{idd},#{mount},#{day},#{id})
 	</insert>
 	<select id="getnewbooking" parameterType="com.web.hospital.model.booking"
 		resultMap="BaseResultMap">
@@ -341,4 +341,10 @@
 		VALUES
 		(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},#{ngaydat},#{loinhan},#{idd})
 	</insert>
+	<select id="checkBookingbyID" parameterType="com.web.hospital.model.booking">
+		select * from Booking
+		where id = #{id}
+		ORDER BY Booking.day ASC
+	</select>
+
 </mapper>
