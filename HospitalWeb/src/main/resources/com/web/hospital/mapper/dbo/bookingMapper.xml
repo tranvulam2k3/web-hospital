@@ -323,24 +323,15 @@
 	</select>
 	<update id="updateBooking" parameterType="com.web.hospital.model.booking">
 		UPDATE Booking
-		SET hotenbenhnhan = #{hotenbenhnhan}, namsinh = #{namsinh}, gioitinh=
-		#{gioitinh} , sdt=#{sdt} ,
-		diachi=#{diachi},email=#{email},hotenbacsi = #{hotenbacsi}, ngaydat=
-		#{ngaydat} , loinhan=#{loinhan}
+		SET hotenbenhnhan = #{hotenbenhnhan}, namsinh = #{namsinh}, gioitinh=#{gioitinh} , sdt=#{sdt} ,
+		diachi=#{diachi},email=#{email}, day=#{day} , loinhan=#{loinhan}
 		WHERE stt=#{stt};
 	</update>
 	<delete id="deletebyStt" parameterType="com.web.hospital.model.booking">
 		delete from Booking
 		where stt = #{stt}
 	</delete>
-	<insert id="addBooking" parameterType="com.web.hospital.model.booking">
-		INSERT
-		INTO
-		Booking
-		(hoTenBenhNhan,namSinh,gioiTinh,SDT,diaChi,email,hoTenBacSi,ngaydat,loinhan,idd)
-		VALUES
-		(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},#{ngaydat},#{loinhan},#{idd})
-	</insert>
+
 	<select id="checkBookingbyID" parameterType="com.web.hospital.model.booking">
 		select * from Booking
 		where id = #{id}

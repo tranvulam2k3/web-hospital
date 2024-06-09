@@ -45,11 +45,16 @@ public class listLichKhamController {
 		return"editBooking";
 	}
 	@PostMapping("/updatebooking")
-	public String update(Model model, booking booking,HttpSession session) {
-		Account loggedInUser = (Account) session.getAttribute("checkuser");
-		doctor doc = doctorMapper.getiddByusername(loggedInUser.getUsername());
-	    String getnameDoc = doc.getHotenbacsi();
-		int update = bookingMapper.updateBooking(booking.getHotenbenhnhan(), booking.getNamsinh(), booking.getGioitinh(), booking.getSdt(), booking.getDiachi(), booking.getEmail(),getnameDoc, booking.getNgaydat(), booking.getLoinhan(), booking.getStt());
+	public String update( booking booking) {
+		int update = bookingMapper.updateBooking(booking.getHotenbenhnhan(),
+					booking.getNamsinh(),
+					booking.getGioitinh(),
+					booking.getSdt(),
+					booking.getDiachi(),
+					booking.getEmail(),
+					booking.getDay(),
+					booking.getLoinhan(),
+					booking.getStt());
 		return "redirect:/qllich";		
 	}
 	@RequestMapping("/deletelich/{stt}")
@@ -64,11 +69,23 @@ public class listLichKhamController {
 	}
 	@PostMapping("/saveBooking")
 	public String addmedical(Model model, booking booking, HttpSession session) {
-		Account loggedInUser = (Account) session.getAttribute("checkuser");
+		Account loggedInUser = (Account) session.getAttribute("account");
 		doctor doc = doctorMapper.getiddByusername(loggedInUser.getUsername());
-	    int getiddoc = doc.getIdd();
+	    int maBS = doc.getIdd();
 	    String getnameDoc = doc.getHotenbacsi();
-	    int save = bookingMapper.addBooking(booking.getHotenbenhnhan(), booking.getNamsinh(), booking.getGioitinh(), booking.getSdt(), booking.getDiachi(), booking.getEmail(),getnameDoc, booking.getNgaydat(), booking.getLoinhan(), getiddoc); 
+		int gia = doc.getMount();
+		int saveToDB = bookingMapper.save(booking.getHotenbenhnhan(),
+				booking.getNamsinh(),
+				booking.getGioitinh(),
+				booking.getSdt(),
+				booking.getDiachi(),
+				booking.getEmail(),
+				getnameDoc,
+				booking.getLoinhan(),
+				maBS,
+				gia,
+				booking.getDay(),
+				booking.getId() );
 		return "redirect:/qllich";
 	}
 }

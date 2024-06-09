@@ -77,11 +77,9 @@ public interface bookingMapper {
     List<booking> listBookingByidD(@Param("idd") int idd);
     booking findbystt(@Param("stt") int stt);
     int updateBooking(@Param("hotenbenhnhan") String hotenbenhnhan,@Param("namsinh") String namsinh,@Param("gioitinh") String gioitinh,
-    		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,@Param("hotenbacsi") String hotenbacsi,
-    		@Param("ngaydat") String ngaydat,@Param("loinhan") String loinhan,@Param("stt") int stt);
+    		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,
+                      @Param("day") Date day,@Param("loinhan") String loinhan,@Param("stt") int stt);
     int deletebyStt(@Param("stt") int stt);
-    int addBooking(@Param("hotenbenhnhan") String hotenbenhnhan,@Param("namsinh") String namsinh,@Param("gioitinh") String gioitinh,
-    		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,@Param("hotenbacsi") String hotenbacsi,
-    		@Param("ngaydat") String ngaydat,@Param("loinhan") String loinhan,@Param("idd") int idd);
+
     List<booking> checkBookingbyID(@Param("id") int id);
 }
