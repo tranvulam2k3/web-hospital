@@ -350,4 +350,10 @@
 		where
 			makhoa = #{makhoa}
 	</select>
+
+	<select id="findDoctorByUsername" parameterType="com.web.hospital.model.doctor">
+		select * from Doctor
+		inner join Account on  Doctor.username = Account.username
+		where Account.username=#{username}
+	</select>
 </mapper>

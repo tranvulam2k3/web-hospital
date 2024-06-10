@@ -55,4 +55,5 @@ public interface AccountMapper {
     int updateacc(@Param("username") String username,@Param("password") String password,@Param("role") String role ,@Param("name") String name,@Param("id") int id);
     int deletebyidacc(@Param("id") int id);
     int addacc(@Param("username") String username,@Param("password") String password,@Param("role") String role ,@Param("name") String name);
+
 }

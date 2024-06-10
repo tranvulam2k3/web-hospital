@@ -90,7 +90,7 @@
 				<span th:if="${session.sessionRole == '2'}" >
 					<div class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-							<img class="rounded-circle me-lg-2" th:src="@{admin/img/user.jpg}" alt=""
+							<img class="rounded-circle me-lg-2" th:src="${session.getImage}" alt=""
 								 style="width: 40px; height: 40px;">
 							<span class="d-none d-lg-inline-flex" th:text="'Bs.'+${session.sessionName}"></span>
 						</a>

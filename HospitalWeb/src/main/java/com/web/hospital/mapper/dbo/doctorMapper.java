@@ -77,4 +77,6 @@ public interface doctorMapper {
     int adddoc(@Param("hotenbacsi") String hotenbacsi,@Param("namsinh") String namsinh,@Param("gioitinh") String gioitinh,
     		@Param("sdt") String sdt,@Param("email") String email,@Param("username") String username);
     List<doctor> getdoctorbymakhoa(@Param("makhoa") int makhoa);
+
+    doctor findDoctorByUsername(@Param("username") String username);
 }
