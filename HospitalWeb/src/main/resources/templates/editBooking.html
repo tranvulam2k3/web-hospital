@@ -84,8 +84,16 @@
 						<input type="date" name="day" th:field="*{day}" class="form-control datepicker" id="day" required>
 					</div>
 					<div class="form-group">
-						<label>Lời Nhắn</label>
-						<textarea name="loinhan" type="text" th:field="*{loinhan}" class="form-control" ></textarea>
+						<label>Bác Sĩ</label>
+						<textarea name="loinhan" type="text" th:field="*{hotenbacsi}" class="form-control" ></textarea>
+					</div>
+					<div class="form-group">
+						<label>Chuẩn Đoán của Bác Sĩ</label>
+						<input name="chuandoan" type="text" class="form-control" ></input>
+					</div>
+					<div class="form-group">
+						<label>Đơn Thuốc</label>
+						<input name="donthuoc" type="text" class="form-control" ></input>
 					</div>
 				</div>
 				<div class="modal-footer">

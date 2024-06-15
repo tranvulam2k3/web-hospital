@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Media Hospital</title>
+    <link th:href="@{https://fonts.googleapis.com/css?family=Montserrat:400,500,700}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet"  th:href="@{/checkout/css/bootstrap.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/checkout/css/slick.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/checkout/css/slick-theme.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/checkout/css/nouislider.min.css}"/>
+    <link rel="stylesheet" th:href="@{/checkout/css/font-awesome.min.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/checkout/css/style.css}"/>
+
+</head>
+<body>
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-7">
+                <!-- Billing Details -->
+                <form th:action="@{/updatebooking}" th:object="${list}" method="post">
+                    <div class="billing-details">
+                        <div class="section-title">
+                            <h3 class="title">Xác Nhận Thông Tin Của Bạn</h3>
+                        </div>
+                        <div class="form-group">
+                            <p>Stt</p>
+                            <input class="input" type="text" th:field="*{stt}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <p>Tên Bệnh Nhân</p>
+                            <input class="input" name="hotenbenhnhan" type="text" th:field="*{hotenbenhnhan}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Năm Sinh</p>
+                            <input class="input" name="namsinh" type="text" th:field="*{namsinh}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Giới Tính</p>
+                            <input class="input" name="gioitinh" type="text" th:field="*{gioitinh}" >
+                        </div>
+                        <div class="form-group">
+                            <p>SĐT</p>
+                            <input class="input" name="sdt" type="text" th:field="*{sdt}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Địa Chỉ</p>
+                            <input class="input" name="diachi" type="text" th:field="*{diachi}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Email</p>
+                            <input class="input" name="email" type="text" th:field="*{email}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Ngày Đặt</p>
+                            <input class="input" type="date" name="day"  th:field="*{day}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Mã Bác Sĩ</p>
+                            <input class="input" name="idd" type="text" th:field="*{idd}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Bác Sĩ</p>
+                            <input class="input" name="hotenbacsi" type="text" th:field="*{hotenbacsi}" >
+                        </div>
+                        <div class="form-group">
+                            <p>Chuẩn Đoán của Bác Sĩ</p>
+                            <input class="input" name="chuandoan" type="text" >
+                        </div>
+                        <div class="form-group">
+                            <p>Đơn Thuốc</p>
+                            <input class="input" name="donthuoc" type="text" >
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+                <!-- /Billing Details -->
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- jQuery Plugins -->
+<script th:src="@{/checkout/js/jquery.min.js}"></script>
+<script th:src="@{/checkout/js/bootstrap.min.js}"></script>
+<script th:src="@{/checkout/js/slick.min.js}"></script>
+<script th:src="@{/checkout/js/nouislider.min.js}"></script>
+<script th:src="@{/checkout/js/jquery.zoom.min.js}"></script>
+<script th:src="@{/checkout/js/main.js}"></script>
+
+</body>
+</html>

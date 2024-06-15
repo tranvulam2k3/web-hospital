@@ -20,7 +20,7 @@
                 <hr>
             </div>
             <!-- Form START -->
-            <form class="file-upload">
+            <form class="file-upload" th:action="@{/updateprofile}" method="post">
                 <div class="row mb-5 gx-5">
                     <!-- Contact detail -->
                     <div class="col-xxl-8 mb-5 mb-xxl-0">
@@ -30,17 +30,16 @@
                                 <!-- First Name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Họ và Tên *</label>
-                                    <input type="text" name="hovaten" class="form-control" placeholder="" aria-label="First name"
-                                           value="Scaralet">
+                                    <input type="text" name="hoten" class="form-control" placeholder="" aria-label="First name"
+                                           th:value="${profile.hoten}">
                                 </div>
                                 <!-- Last name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Giới Tính *</label>
                                     <div class="col-md-4 form-group">
-                                        <select name="sex" id="department" class="form-select">
-                                            <option value="">Giới tính</option>
-                                            <option value="Nam">Nam</option>
-                                            <option value="Nữ">Nữ</option>
+                                        <select name="gioitinh" id="department" class="form-select">
+                                            <option value="Nam" th:selected="${profile.gioitinh == 'Nam'}">Nam</option>
+                                            <option value="Nữ" th:selected="${profile.gioitinh == 'Nữ'}">Nữ</option>
                                         </select>
                                         <div class="validate"></div>
                                     </div>
@@ -49,13 +48,13 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Số Điện Thoại *</label>
                                     <input type="text" name="sdt" class="form-control" placeholder="" aria-label="Phone number"
-                                           value="(333) 000 555">
+                                           th:value="${profile.sdt}">
                                 </div>
                                 <!-- Mobile number -->
                                 <div class="col-md-12">
                                     <label class="form-label">Ngày/Tháng/Năm Sinh *</label>
                                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                                        <input type="date" name="day" class="form-control datepicker" id="day" required>
+                                        <input type="date" name="ngaysinh" class="form-control datepicker" th:value="${profile.ngaysinh}" required>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
@@ -63,13 +62,13 @@
                                 <div class="col-md-6">
                                     <label for="inputEmail4" class="form-label">Email *</label>
                                     <input type="email" name="email" class="form-control" id="inputEmail4"
-                                           value="example@homerealty.com">
+                                           th:value="${profile.email}">
                                 </div>
                                 <!-- Skype -->
                                 <div class="col-md-6">
                                     <label class="form-label">Địa Chỉ *</label>
-                                    <input type="text" name="diachi" class="form-control" placeholder="" aria-label="Phone number"
-                                           value="Scaralet D">
+                                    <input type="text" name="diachi" class="form-control" placeholder=""
+                                           th:value="${profile.diachi}">
                                 </div>
                             </div> <!-- Row END -->
                         </div>
@@ -114,60 +113,6 @@
                             document.getElementById('customFile').value = ''; // Clear the input file
                         }
                     </script>
-                    <!-- Social media detail -->
-                    <div class="row mb-5 gx-5">
-                        <div class="col-xxl-6 mb-5 mb-xxl-0">
-                            <div class="bg-secondary-soft px-4 py-5 rounded">
-                                <div class="row g-3">
-                                    <h4 class="mb-4 mt-0">Social media detail</h4>
-                                    <!-- Facebook -->
-                                    <div class="col-md-6">
-                                        <label class="form-label"><i
-                                                class="fab fa-fw fa-facebook me-2 text-facebook"></i>Facebook *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Facebook"
-                                               value="http://www.facebook.com">
-                                    </div>
-                                    <!-- Twitter -->
-                                    <div class="col-md-6">
-                                        <label class="form-label"><i class="fab fa-fw fa-twitter text-twitter me-2"></i>Twitter
-                                            *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Twitter"
-                                               value="http://www.twitter.com">
-                                    </div>
-                                    <!-- Linkedin -->
-                                    <div class="col-md-6">
-                                        <label class="form-label"><i
-                                                class="fab fa-fw fa-linkedin-in text-linkedin me-2"></i>Linkedin
-                                            *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Linkedin"
-                                               value="http://www.linkedin.com">
-                                    </div>
-                                    <!-- Instragram -->
-                                    <div class="col-md-6">
-                                        <label class="form-label"><i
-                                                class="fab fa-fw fa-instagram text-instagram me-2"></i>Instagram
-                                            *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Instragram"
-                                               value="http://www.instragram.com">
-                                    </div>
-                                    <!-- Dribble -->
-                                    <div class="col-md-6">
-                                        <label class="form-label"><i
-                                                class="fas fa-fw fa-basketball-ball text-dribbble me-2"></i>Dribble
-                                            *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Dribble"
-                                               value="http://www.dribble.com">
-                                    </div>
-                                    <!-- Pinterest -->
-                                    <div class="col-md-6">
-                                        <label class="form-label"><i class="fab fa-fw fa-pinterest text-pinterest"></i>Pinterest
-                                            *</label>
-                                        <input type="text" class="form-control" placeholder="" aria-label="Pinterest"
-                                               value="http://www.pinterest.com">
-                                    </div>
-                                </div> <!-- Row END -->
-                            </div>
-                        </div>
 
                         <!-- change password -->
                         <div class="col-xxl-6">
@@ -177,26 +122,32 @@
                                     <!-- Old password -->
                                     <div class="col-md-6">
                                         <label for="exampleInputPassword1" class="form-label">Old password *</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                        <input type="password" name="oldPassword" class="form-control" id="exampleInputPassword1" >
                                     </div>
                                     <!-- New password -->
                                     <div class="col-md-6">
                                         <label for="exampleInputPassword2" class="form-label">New password *</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword2">
+                                        <input type="password" name="newPassword" class="form-control" id="exampleInputPassword2" >
                                     </div>
                                     <!-- Confirm password -->
                                     <div class="col-md-12">
                                         <label for="exampleInputPassword3" class="form-label">Confirm Password *</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword3">
+                                        <input type="password" name="confirmPassword" class="form-control" id="exampleInputPassword3" >
                                     </div>
+                                    <div th:if="${error}" class="error-container">
+                                        <div class="error-message" th:text="${error}"></div>
+                                    </div>
+                                    <!-- Update button -->
+
                                 </div>
                             </div>
                         </div>
+
                     </div> <!-- Row END -->
                     <!-- button -->
                     <div class="gap-3 d-md-flex justify-content-md-end text-center">
-                        <button type="button" class="btn btn-danger btn-lg">Delete profile</button>
-                        <button type="button" class="btn btn-primary btn-lg">Update profile</button>
+                        <button type="submit" class="btn btn-danger btn-lg">Delete profile</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Update profile</button>
                     </div>
             </form> <!-- Form END -->
         </div>

@@ -232,7 +232,6 @@
 									<tr>
 										<th scope="col">Id</th>
 										<th scope="col">Username</th>
-										<th scope="col">Password</th>
 										<th scope="col">Role</th>
 										<th scope="col">Name</th>
 									</tr>
@@ -240,9 +239,8 @@
 								<tbody>
 									<tr th:each="list :${list}">
 										<th th:text="${list.id}"></th>
-										<td th:text="${list.username}" </td>
-										<td th:text="${list.password}"></td>
-										<td th:text="${list.role}" </td>
+										<td th:text="${list.username}"> </td>
+										<td th:text="${list.role}"> </td>
 										<td th:text="${list.name}"></td>
 										<td>
 											<a class="btn btn-sm btn-primary" th:href="@{'/editaccount' +'/'+ ${list.id}}">Sửa</a>

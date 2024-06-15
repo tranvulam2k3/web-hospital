@@ -70,9 +70,17 @@
 					<li th:if="${session.sessionRole == '2'}" class="dropdown"><a href="#"><span>Quản Lí</span> <i
 								class="bi bi-chevron-down"></i></a>
 						<ul>
-							<li><a th:href="@{/qlbenhnhan}">Quản lí Bệnh Nhân</a></li>
+							<li><a th:href="@{/qlhoso}">Quản lí Hồ Sơ Bệnh Án</a></li>
 							<li><a th:href="@{/qllich}">Quản lí Lịch Khám</a></li>
 <!--							<li><a th:href="@{/qlhoso}">Quản lí Hồ sơ bệnh án</a></li>-->
+						</ul>
+					</li>
+					<li th:if="${session.sessionRole == '3'}" class="dropdown"><a href="#"><span>Lịch Sử </span> <i
+							class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a th:href="@{/lich-su-kham}">Khám Bệnh</a></li>
+							<li><a th:href="@{/lich-su-thanh-toan}">Thanh Toán</a></li>
+							<!--							<li><a th:href="@{/qlhoso}">Quản lí Hồ sơ bệnh án</a></li>-->
 						</ul>
 					</li>
 					<li><a th:if="${session.checkuser == null}" class="nav-link scrollto" th:href="@{/login}">
@@ -109,7 +117,7 @@
 							<span class="d-none d-lg-inline-flex" th:text="${session.sessionName}"></span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-							<a href="#" class="dropdown-item">My Profile</a>
+							<a th:href="@{/profile}" class="dropdown-item">My Profile</a>
 							<a th:href="@{/checkbooking}" class="dropdown-item">Lịch Khám </a>
 							<a th:href="@{/logout}" class="dropdown-item">Log Out</a>
 						</div>

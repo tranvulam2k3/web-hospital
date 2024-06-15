@@ -4,7 +4,14 @@
     --light: #F3F6F9;
     --dark: #191C24;
 }
-
+.cancelled-status {
+    color: red;
+    font-weight: bold;
+}
+.completed-status {
+    color: green;
+    font-weight: bold;
+}
 .back-to-top {
     position: fixed;
     display: none;

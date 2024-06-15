@@ -2,6 +2,8 @@ package com.web.hospital.controller;
 
 import java.util.List;
 
+import com.web.hospital.mapper.dbo.hosoMapper;
+import com.web.hospital.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.hospital.mapper.dbo.MedicalVisitsMapper;
 import com.web.hospital.mapper.dbo.doctorMapper;
-import com.web.hospital.model.Account;
-import com.web.hospital.model.MedicalVisits;
-import com.web.hospital.model.booking;
-import com.web.hospital.model.doctor;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,45 +23,44 @@ public class listhosoController {
 	doctorMapper doctorMapper;
 	
 	@Autowired
-	MedicalVisitsMapper medicalVisitsMapper;
+	hosoMapper hosoMapper;
 	
 	@GetMapping("/qlhoso")
 	public String hoso(Model model ,HttpSession session) {
 		Account loggedInUser = (Account) session.getAttribute("checkuser");
 	    doctor doc = doctorMapper.getiddByusername(loggedInUser.getUsername());
 	    int getiddoc = doc.getIdd();
-	    System.out.println(getiddoc);
-		List<MedicalVisits> list = medicalVisitsMapper.gellAllbyIdd(getiddoc);
-		model.addAttribute("list", list);
+		List<hoso> listhoso = hosoMapper.selectHosobyIDdoc(getiddoc);
+		model.addAttribute("listhoso", listhoso);
 		return "qlhoso";
 	}
-	@GetMapping("/edithoso/{id}")
-	public String edit(Model model, @PathVariable("id") int id) {
-		MedicalVisits list = medicalVisitsMapper.findbyID(id);
+	@GetMapping("/edithoso/{idhoso}")
+	public String edit(Model model, @PathVariable("idhoso") int idhoso) {
+		hoso list = hosoMapper.findHosoByID(idhoso);
 		model.addAttribute("list", list);
 		return"editMedical";
 	}
 	@PostMapping("/updateMedical")
-	public String update(Model model, MedicalVisits medicalVisits) {
-		int update = medicalVisitsMapper.updateMedical(medicalVisits.getHotenbenhnhan(), medicalVisits.getNgaykham(), medicalVisits.getLidokham(), medicalVisits.getChuandoan(), medicalVisits.getGhichucuabacsi(), medicalVisits.getDonthuoc(), medicalVisits.getId());
-		return "redirect:/qlhoso";		
-	}
-	@RequestMapping("/delete/{id}")
-	public String deletebyID(Model model , @PathVariable("id") int id) {
-		int delete = medicalVisitsMapper.deletebyID(id);
+	public String update(Model model, hoso hoso) {
+		int update = hosoMapper.updateHosoByID(hoso);
 		return "redirect:/qlhoso";
 	}
-	@GetMapping("/addMedical")
-	public String showadd() {
-		return "addMedical";
-
-	}
-	@PostMapping("/add")
-	public String addmedical(Model model, MedicalVisits medicalVisits, HttpSession session) {
-		Account loggedInUser = (Account) session.getAttribute("checkuser");
-		doctor doc = doctorMapper.getiddByusername(loggedInUser.getUsername());
-	    int getiddoc = doc.getIdd();
-	    int addmedical = medicalVisitsMapper.addmedical(medicalVisits.getHotenbenhnhan(), medicalVisits.getNgaykham(), medicalVisits.getLidokham(), medicalVisits.getChuandoan(), medicalVisits.getGhichucuabacsi(),medicalVisits.getDonthuoc(), getiddoc);
+	@RequestMapping("/deletehoso/{idhoso}")
+	public String deletebyID(Model model , @PathVariable("idhoso") int idhoso) {
+		int delete = hosoMapper.deleteHosoByID(idhoso);
 		return "redirect:/qlhoso";
 	}
+//	@GetMapping("/addMedical")
+//	public String showadd() {
+//		return "addMedical";
+//
+//	}
+//	@PostMapping("/add")
+//	public String addmedical(Model model, MedicalVisits medicalVisits, HttpSession session) {
+//		Account loggedInUser = (Account) session.getAttribute("checkuser");
+//		doctor doc = doctorMapper.getiddByusername(loggedInUser.getUsername());
+//	    int getiddoc = doc.getIdd();
+//	    int addmedical = medicalVisitsMapper.addmedical(medicalVisits.getHotenbenhnhan(), medicalVisits.getNgaykham(), medicalVisits.getLidokham(), medicalVisits.getChuandoan(), medicalVisits.getGhichucuabacsi(),medicalVisits.getDonthuoc(), getiddoc);
+//		return "redirect:/qlhoso";
+//	}
 }

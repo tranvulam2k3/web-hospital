@@ -4,6 +4,7 @@ import com.web.hospital.config.VNPAYService;
 import com.web.hospital.model.Account;
 import com.web.hospital.model.booking;
 import com.web.hospital.model.doctor;
+import com.web.hospital.model.historygiaodich;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import com.web.hospital.mapper.dbo.bookingMapper;
+import com.web.hospital.mapper.dbo.historygiaodichMapper;
+
+
+import java.util.Date;
 
 @Controller
 public class VNPayController {
@@ -22,6 +27,9 @@ public class VNPayController {
 
     @Autowired
     private bookingMapper bookingMapper;
+
+    @Autowired
+    private historygiaodichMapper historygiaodichMapper;
 
 
     @GetMapping({"/vnpay"})
@@ -41,7 +49,7 @@ public class VNPayController {
 
     // Sau khi hoàn tất thanh toán, VNPAY sẽ chuyển hướng trình duyệt về URL này
     @GetMapping("/vnpay-payment-return")
-    public String paymentCompleted(HttpServletRequest request, Model model, booking booking) {
+    public String paymentCompleted(HttpServletRequest request, Model model, booking booking, historygiaodich historygiaodich) {
         int paymentStatus = vnPayService.orderReturn(request);
 
         String orderInfo = request.getParameter("vnp_OrderInfo");
@@ -76,6 +84,9 @@ public class VNPayController {
                                       bookingInfo.getDay(),
                                       id );
 
+        historygiaodich.setNgaygiaodich(new Date());
+        System.out.println(historygiaodich.getNgaygiaodich());
+        int inserttoTable = historygiaodichMapper.insertgd(transactionId,historygiaodich.getNgaygiaodich(),bookingInfo.getMount(),id);
         return paymentStatus == 1 ? "ordersuccess" : "orderfail";
     }
 }

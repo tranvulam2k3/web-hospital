@@ -45,13 +45,17 @@ ALTER TABLE Booking
   ADD maBS int;
 
   ALTER TABLE Doctor ADD  username nvarchar(50)
+
  select * from Doctor
-select * from Khoa
 select * from Patients
 select * from Account
 select * from Doctor
+select * from Khoa
+select * from 
+
 select * from Booking
 	where idd = 3
+
 select tenKhoa from Khoa
 select * from Doctor
 where idd=1
@@ -123,15 +127,18 @@ INNER JOIN Khoa ON Doctor.maKhoa = Khoa.maKhoa;
 
 select * from Account
 
-CREATE TABLE MedicalVisits (
-    ID INT PRIMARY KEY IDENTITY (1,1),
+CREATE TABLE HoSo (
+    idHoSo INT PRIMARY KEY IDENTITY (1,1),
 	hotenbenhnhan nvarchar(50),
-    ngayKham nvarchar(50),
-    lidoKham nvarchar(50),
-    chuanDoan nvarchar(50),
-    ghichucuabacsi nvarchar(50),
-	donthuoc nvarchar(50),
-	idD int
+    namSinh nvarchar(50),
+	gioiTinh nvarchar(50),
+	SDT nvarchar(50),
+	diaChi nvarchar(50),
+	ngayKham date,
+	idD int ,
+	hotenbacsi nvarchar(50),
+	chuanDoan nvarchar(50),
+	donThuoc nvarchar(50)
 );
 
 insert into MedicalVisits(hotenbenhnhan,ngayKham,lidoKham,chuanDoan,ghichucuabacsi,donthuoc,idD)
@@ -183,3 +190,39 @@ where maKhoa = 2
 UPDATE Khoa
 SET hinhanhKhoa = 'https://benhviensaigonnamdinh.vn/wp-content/uploads/2023/05/thai-san-sn1-2.jpg'
 WHERE maKhoa=4;
+
+select
+		*
+		from
+		Booking
+		where
+		stt = 36
+
+select * from HoSo
+where idD=2
+ORDER BY HoSo.ngayKham ASC
+
+INSERT INTO HoSo(hotenbenhnhan,namSinh,gioiTinh,SDT,diaChi,ngayKham,idD,hotenbacsi,chuanDoan,donThuoc)
+values()
+
+create table ThongTinCaNhan(
+	idcanhan INT PRIMARY KEY IDENTITY (1,1),
+	hoten nvarchar(50),
+	gioiTinh nvarchar(50),
+	SDT nvarchar(50),
+	ngaysinh date,
+	email nvarchar(50),
+	diaChi nvarchar(50),
+	username nvarchar(50)
+)
+
+select ThongTinCaNhan.* , Account.password  from ThongTinCaNhan
+inner join Account on ThongTinCaNhan.username = Account.username
+
+select * from ThongTinCaNhan
+where username = 'lam'
+
+
+UPDATE Account
+SET password = '123123'
+WHERE username='lam';

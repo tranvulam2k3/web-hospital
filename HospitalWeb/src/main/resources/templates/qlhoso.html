@@ -45,28 +45,32 @@
 				<table class="table text-start align-middle table-bordered table-hover mb-0">
 					<thead>
 						<tr class="text-dark">
-							<th scope="col">ID</th>
-							<th scope="col">Họ tên bệnh nhân</th>
+							<th scope="col">Id Hồ Sơ</th>
+							<th scope="col">Họ Tên Bệnh Nhân</th>
+							<th scope="col">Năm Sinh</th>
+							<th scope="col">Giới Tính</th>
+							<th scope="col">SĐT</th>
+							<th scope="col">Địa Chỉ</th>
 							<th scope="col">Ngày Khám</th>
-							<th scope="col">Lí do</th>
 							<th scope="col">Chuẩn Đoán</th>
-							<th scope="col">Ghi Chú</th>
 							<th scope="col">Đơn Thuốc</th>
 							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="list : ${list}">
-							<td th:text="${list.id}"></td>
-							<td th:text="${list.hotenbenhnhan}"></td>
-							<td th:text="${list.ngaykham}"></td>
-							<td th:text="${list.lidokham}"></td>
-							<td th:text="${list.chuandoan}"></td>
-							<td th:text="${list.ghichucuabacsi}"></td>
-							<td th:text="${list.donthuoc}"></td>
+						<tr th:each="listhoso : ${listhoso}">
+							<td th:text="${listhoso.idhoso}"></td>
+							<td th:text="${listhoso.hotenbenhnhan}"></td>
+							<td th:text="${listhoso.namsinh}"></td>
+							<td th:text="${listhoso.gioitinh}"></td>
+							<td th:text="${listhoso.sdt}"></td>
+							<td th:text="${listhoso.diachi}"></td>
+							<td th:text="${listhoso.FormattedDay}"></td>
+							<td th:text="${listhoso.chuandoan}"></td>
+							<td th:text="${listhoso.donthuoc}"></td>
 							<td>
-								<a class="btn btn-sm btn-primary" th:href="@{'/edithoso' +'/'+ ${list.id}}">Sửa</a>
-								<a class="btn btn-sm btn-primary" th:href="@{'/edithoso' +'/'+ ${list.id}}">Xóa</a>
+								<a class="btn btn-sm btn-primary" th:href="@{'/edithoso' +'/'+ ${listhoso.idhoso}}">Sửa</a>
+								<a class="btn btn-sm btn-primary" th:href="@{'/deletehoso' +'/'+ ${listhoso.idhoso}}">Xóa</a>
 							</td>
 						</tr>
 					</tbody>

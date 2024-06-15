@@ -38,25 +38,13 @@ public class listLichKhamController {
 		model.addAttribute("list", listBooking);
 		return "qllich";
 	}
-	@GetMapping("/editlich/{stt}")
+	@GetMapping("/examination/{stt}")
 	public String edit(Model model, @PathVariable("stt") int stt) {
 		booking list = bookingMapper.findbystt(stt); 
 		model.addAttribute("list", list);
-		return"editBooking";
+		return"addhoso";
 	}
-	@PostMapping("/updatebooking")
-	public String update( booking booking) {
-		int update = bookingMapper.updateBooking(booking.getHotenbenhnhan(),
-					booking.getNamsinh(),
-					booking.getGioitinh(),
-					booking.getSdt(),
-					booking.getDiachi(),
-					booking.getEmail(),
-					booking.getDay(),
-					booking.getLoinhan(),
-					booking.getStt());
-		return "redirect:/qllich";		
-	}
+
 	@RequestMapping("/deletelich/{stt}")
 	public String deleteby(Model model , @PathVariable("stt") int stt) {
 		int delete = bookingMapper.deletebyStt(stt);

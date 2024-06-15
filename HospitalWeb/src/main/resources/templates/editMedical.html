@@ -53,31 +53,41 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label>ID</label>
-						<input name="id" type="text" th:field="*{id}" readonly="true" class="form-control" required>
+						<input name="idhoso" type="text" th:field="*{idhoso}" readonly="true" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Họ tên bệnh nhân</label>
+						<label>Họ Tên Bệnh Nhân</label>
 						<input name="hotenbenhnhan" type="text" th:field="*{hotenbenhnhan}" class="form-control"
 							required>
 					</div>
 					<div class="form-group">
-						<label>Ngày Khám</label>
-						<input name="ngaykham" type="text" th:field="*{ngaykham}" class="form-control" required>
+						<label>Năm Sinh</label>
+						<input name="namsinh" type="text" th:field="*{namsinh}" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Lí do</label>
-						<textarea name="lidokham" type="text" th:field="*{lidokham}" class="form-control"
+						<label>Giới Tính</label>
+						<textarea name="gioitinh" type="text" th:field="*{gioitinh}" class="form-control"
 							required></textarea>
+					</div>
+					<div class="form-group">
+						<label>SĐT</label>
+						<textarea name="sdt" type="text" th:field="*{sdt}" class="form-control"
+							required></textarea>
+					</div>
+					<div class="form-group">
+						<label>Địa Chỉ</label>
+						<textarea name="diachi" type="text" th:field="*{diachi}" class="form-control"
+							required></textarea>
+					</div>
+					<div class="form-group">
+						<label>Ngày Khám</label>
+						<textarea name="ngaykham" type="date" th:field="*{ngaykham}" class="form-control"
+								  required></textarea>
 					</div>
 					<div class="form-group">
 						<label>Chuẩn Đoán</label>
 						<textarea name="chuandoan" type="text" th:field="*{chuandoan}" class="form-control"
-							required></textarea>
-					</div>
-					<div class="form-group">
-						<label>Ghi Chú</label>
-						<textarea name="ghichucuabacsi" type="text" th:field="*{ghichucuabacsi}" class="form-control"
-							required></textarea>
+								  required></textarea>
 					</div>
 					<div class="form-group">
 						<label>Đơn Thuốc</label>
