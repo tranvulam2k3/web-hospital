@@ -48,7 +48,7 @@ public class loginController {
 			session.setAttribute("checkID", checkuser.getId());
 			session.setAttribute("sessionName", checkuser.getName());
 			session.setAttribute("sessionRole", checkuser.getRole());
-			session.setMaxInactiveInterval(300);
+//			session.setMaxInactiveInterval(300);
 
 			doctor doc = doctorMapper.findDoctorByUsername(account.getUsername());
 			if (doc != null) {

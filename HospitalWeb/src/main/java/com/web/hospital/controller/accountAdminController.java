@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.web.hospital.mapper.dbo.AccountMapper;
-import com.web.hospital.mapper.dbo.doctorMapper;
-import com.web.hospital.mapper.dbo.khoaMapper;
 import com.web.hospital.model.Account;
-import com.web.hospital.model.doctor;
-import com.web.hospital.model.khoa;
 
 import jakarta.servlet.http.HttpSession;
 

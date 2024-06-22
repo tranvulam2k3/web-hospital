@@ -340,4 +340,8 @@
         ngaysinh = #{ngaysinh} , email = #{email} , diaChi = #{diachi}
     WHERE username = #{username};
   </update>
+  <insert id="addusername" parameterType="com.web.hospital.model.thongtincanhan">
+    insert into ThongTinCaNhan(username)
+    values (#{username})
+  </insert>
 </mapper>

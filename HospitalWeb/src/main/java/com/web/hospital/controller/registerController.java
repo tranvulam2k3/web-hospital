@@ -1,5 +1,6 @@
 package com.web.hospital.controller;
 
+import com.web.hospital.mapper.dbo.thongtincanhanMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class registerController {
 	
 	@Autowired 
 	AccountMapper accountMapper;
+
+	@Autowired
+	thongtincanhanMapper thongtincanhanMapper;
 	
 	@GetMapping("/register")
 	public String register(Account account, Model model) {
@@ -35,6 +39,8 @@ public class registerController {
 				Account checkuser = accountMapper.checkuser(account.getUsername());
 				if(checkuser == null) {
 					int dangki = accountMapper.register(account.getUsername(), account.getPassword(), account.getName());
+					//add username to table thongtincanhan
+					int addusername = thongtincanhanMapper.addusername(account.getUsername());
 					return "login";
 				}
 			}

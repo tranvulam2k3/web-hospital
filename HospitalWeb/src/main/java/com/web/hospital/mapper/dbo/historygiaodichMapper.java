@@ -101,4 +101,8 @@ public interface historygiaodichMapper {
     int insertgd(@Param("magiaodich") String magiaodich , @Param("ngaygiaodich") Date ngaygiaodich,
                  @Param("mount") int mount , @Param("id") int id );
     List<historygiaodich> getallbyID(@Param("id") Integer id);
+    List<historygiaodich> getall();
+    List<historygiaodich> getallbyHoten(@Param("hoten") String hoten);
+    List<historygiaodich> sortNewDay();
+    List<historygiaodich> sortLastDay();
 }

@@ -296,4 +296,32 @@
         from historygiaodich
         where id = #{id}
     </select>
+    <select id="getall" parameterType="com.web.hospital.model.historygiaodich">
+        select historygiaodich.*, ThongTinCaNhan.hoten
+        from historygiaodich
+                 INNER JOIN Account on historygiaodich.id = Account.id
+                 INNER JOIN ThongTinCaNhan on ThongTinCaNhan.username = Account.username
+        ORDER BY historygiaodich.idgiaodich ASC
+    </select>
+    <select id="getallbyHoten" parameterType="com.web.hospital.model.historygiaodich">
+        select historygiaodich.*, ThongTinCaNhan.hoten
+        from historygiaodich
+                 INNER JOIN Account on historygiaodich.id = Account.id
+                 INNER JOIN ThongTinCaNhan on ThongTinCaNhan.username = Account.username
+        where ThongTinCaNhan.hoten LIKE + '%' + #{hoten} + '%'
+    </select>
+    <select id="sortNewDay" parameterType="com.web.hospital.model.historygiaodich">
+        select historygiaodich.*, ThongTinCaNhan.hoten
+        from historygiaodich
+                 INNER JOIN Account on historygiaodich.id = Account.id
+                 INNER JOIN ThongTinCaNhan on ThongTinCaNhan.username = Account.username
+        ORDER BY historygiaodich.ngaygiaodich DESC
+    </select>
+    <select id="sortLastDay" parameterType="com.web.hospital.model.historygiaodich">
+        select historygiaodich.*, ThongTinCaNhan.hoten
+        from historygiaodich
+                 INNER JOIN Account on historygiaodich.id = Account.id
+                 INNER JOIN ThongTinCaNhan on ThongTinCaNhan.username = Account.username
+        ORDER BY historygiaodich.ngaygiaodich ASC
+    </select>
 </mapper>

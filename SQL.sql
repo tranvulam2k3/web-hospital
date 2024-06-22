@@ -54,7 +54,7 @@ select * from Khoa
 select * from 
 
 select * from Booking
-	where idd = 3
+	where id = 15
 
 select tenKhoa from Khoa
 select * from Doctor
@@ -100,10 +100,7 @@ INNER JOIN Doctor ON Booking.idD = Doctor.idD
 ORDER BY Booking.stt DESC
 
 
-SELECT Doctor.*, Khoa.tenKhoa
-FROM Doctor
-INNER JOIN Khoa ON Doctor.makhoa = Khoa.makhoa
-where hoTenBacSi like '%Lê Nguyên%'
+ 
 
 select Top 1 * from booking
 order by stt desc
@@ -226,3 +223,63 @@ where username = 'lam'
 UPDATE Account
 SET password = '123123'
 WHERE username='lam';
+
+create table historylichkham(
+	Stt int ,
+	hoTenBenhNhan nvarchar(50),
+	namSinh nvarchar(50),
+	gioiTinh nvarchar(50),
+	SDT nvarchar(50),
+	diaChi nvarchar(50),
+	email nvarchar(50),
+	hoTenBacSi nvarchar(50),
+	day date,
+	note nvarchar(max),
+	mount int,
+	id int
+)
+select * from HoSo
+select * from historylichkham
+where id =2 
+
+INSERT INTO historylichkham(Stt,hoTenBenhNhan,namSinh,gioiTinh,SDT,diaChi,email,hoTenBacSi,day,note,mount,id) 
+SELECT Booking.Stt , Booking.hoTenBenhNhan, Booking.namSinh, Booking.gioiTinh, Booking.SDT, Booking.diaChi, 
+		Booking.email, Booking.hoTenBacSi, Booking.day, Booking.loinhan, Booking.mount, Booking.id FROM Booking 
+where stt = 52;
+
+DELETE FROM historylichkham
+where stt = 52
+
+create table historygiaodich(
+	idgiaodich INT PRIMARY KEY IDENTITY (1,1),
+	magiaodich nvarchar(50),
+	ngaygiaodich date,
+	mount int,
+	id int
+)
+
+select * from historygiaodich
+select * from Account
+select * from ThongTinCaNhan
+where id = 2
+
+select historygiaodich.* , ThongTinCaNhan.hoten from historygiaodich 
+INNER JOIN Account on historygiaodich.id = Account.id
+INNER JOIN ThongTinCaNhan on ThongTinCaNhan.username= Account.username
+
+
+	insert into ThongTinCaNhan(username) 
+	values ('nhatkha')
+
+
+select booking.*,phong_kham.dia_chi from booking
+INNER JOIN Doctor on booking.idD = Doctor.idD
+INNER JOIN phong_kham on Doctor.idphong=phong_kham.idphong
+where booking.idD = 2
+
+select Doctor.* , phong_kham.ten_phong_kham from Doctor
+INNER JOIN phong_kham on Doctor.idphong = phong_kham.idphong
+
+select * from Doctor
+select * from booking
+select * from phong_kham

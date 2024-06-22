@@ -42,9 +42,9 @@ public class profileController {
         int updateinfor = thongtincanhanmapper.updataprofileByusername(thongtincanhan.getHoten(), thongtincanhan.getGioitinh(),
                 thongtincanhan.getSdt(), thongtincanhan.getNgaysinh(), thongtincanhan.getEmail(),
                 thongtincanhan.getDiachi(), username);
-        if (oldPassword == null && oldPassword.isEmpty() &&
-                newPassword == null && newPassword.isEmpty() &&
-                confirmPassword == null && confirmPassword.isEmpty()) {
+        if (oldPassword == "" && oldPassword.isEmpty() &&
+                newPassword == "" && newPassword.isEmpty() &&
+                confirmPassword == "" && confirmPassword.isEmpty()) {
             return "redirect:/home";
         } else {
             if (oldPassword.equals(pass) == true) {

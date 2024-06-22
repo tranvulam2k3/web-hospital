@@ -68,7 +68,9 @@ public interface doctorMapper {
     int updateByExample(@Param("row") doctor row, @Param("example") doctorExample example);
     List<doctor> getdoctor();
     doctor getdoctorbyID(@Param("idd") int idd);
-    doctor searchbyName(@Param("hotenbacsi") String hotenbacsi);
+    List<doctor> searchbyName(@Param("hotenbacsi") String hotenbacsi,@Param("offset") int offset , @Param("pagesize") int pagesize);
+    List<doctor> listSearchbyName(@Param("hotenbacsi") String hotenbacsi);
+
     doctor getiddByusername(@Param("username") String username);
     doctor findbyidd(@Param("idd") int idd);
     int updatedoc(@Param("hotenbacsi") String hotenbacsi,@Param("namsinh") String namsinh,@Param("gioitinh") String gioitinh,

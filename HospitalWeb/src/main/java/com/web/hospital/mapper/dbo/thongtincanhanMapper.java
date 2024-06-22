@@ -103,4 +103,5 @@ public interface thongtincanhanMapper {
     int updataprofileByusername(@Param("hoten") String hoten, @Param("gioitinh") String gioitinh, @Param("sdt") String sdt,
                                 @Param("ngaysinh") LocalDate ngaysinh, @Param("email") String email , @Param("diachi") String diachi ,
                                 @Param("username") String username);
+    int addusername(@Param("username") String username);
 }
