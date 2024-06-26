@@ -48,7 +48,7 @@
 			<form th:action="@{/saveBooking}" method="post">
 				<div class="modal-header">
 					<h4 class="modal-title">Tạo Lịch Khám</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<a  th:href="@{/qllich}" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
 				</div>
 				<div class="modal-body">
 					
@@ -91,14 +91,11 @@
 						<label>Lời Nhắn</label>
 						<textarea name="loinhan" type="text"  class="form-control" ></textarea>
 					</div>
-					<div class="form-group">
-						<label>ID</label>
-						<input name="id" type="text"  class="form-control" required>
-					</div>
+
 				</div>
 				<div class="modal-footer">
-					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-info" value="Tạo">
+					<a th:href="@{/qllich}" class="btn btn-default" data-dismiss="modal" value="Cancel">Cancel</a>
+					<input type="submit" class="btn btn-info" value="Tạo Lịch ">
 				</div>
 			</form>
 		</div>

@@ -3,6 +3,7 @@ package com.web.hospital.mapper.dbo;
 import com.web.hospital.model.hoso;
 import com.web.hospital.model.hosoExample;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -99,7 +100,9 @@ public interface hosoMapper {
      */
     int updateByPrimaryKey(hoso row);
 
-    int insertHoso(@Param("hoso") hoso hoso) ;
+    int insertHoso(@Param("hotenbenhnhan") String hotenbenhnhan,@Param("namsinh") String namsinh , @Param("gioitinh") String gioitinh,
+                   @Param("sdt") String sdt , @Param("diachi") String diachi,@Param("day") Date day , @Param("idd") int idd ,
+                   @Param("hotenbacsi") String hotenbacsi , @Param("chuandoan") String chuandan , @Param("donthuoc") String donthuoc); ;
     List<hoso> selectHosobyIDdoc(@Param("idd") int idd);
     hoso findHosoByID(@Param("idhoso") int idhoso);
     int deleteHosoByID(@Param("idhoso") int idhoso);

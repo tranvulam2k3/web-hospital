@@ -39,8 +39,8 @@
 						Create Account
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate="Name is required">
-						<input class="input100" type="text" th:field="*{name}">
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" th:field="*{name}" required>
 						<span class="focus-input100"></span>
 						<span class="label-input100">Tên Hiển Thị</span>
 					</div>
@@ -48,8 +48,8 @@
 						<div class="error-message" th:errors="*{name}"></div>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="User Name is required">
-						<input class="input100" type="text" th:field="*{username}">
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" th:field="*{username}" required>
 						<span class="focus-input100"></span>
 						<span class="label-input100">Tên Đăng Nhập</span>
 					</div>
@@ -57,8 +57,17 @@
 						<div class="error-message" th:errors="*{username}"></div>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" th:field="*{password}">
+					<div class="wrap-input100">
+						<input class="input100" type="text" th:field="*{email}" required>
+						<span class="focus-input100"></span>
+						<span class="label-input100">Email</span>
+					</div>
+					<div th:if="${#fields.hasErrors('email')}" class="error-container">
+						<div class="error-message" th:errors="*{email}"></div>
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="password" th:field="*{password}" required>
 						<span class="focus-input100"></span>
 						<span class="label-input100">Mật Khẩu</span>
 					</div>

@@ -383,8 +383,8 @@
 
     <insert id="insertHoso" parameterType="com.web.hospital.model.hoso">
         INSERT INTO HoSo(hotenbenhnhan, namSinh, gioiTinh, SDT, diaChi, ngayKham, idD, hotenbacsi, chuanDoan, donThuoc)
-        VALUES (#{hoso.hotenbenhnhan}, #{hoso.namsinh}, #{hoso.gioitinh}, #{hoso.sdt}, #{hoso.diachi}, #{hoso.day},
-                #{hoso.idd}, #{hoso.hotenbacsi}, #{hoso.chuandoan}, #{hoso.donthuoc})
+        VALUES (#{hotenbenhnhan}, #{namsinh}, #{gioitinh}, #{sdt}, #{diachi}, #{day},
+                #{idd}, #{hotenbacsi}, #{chuandoan}, #{donthuoc})
     </insert>
     <select id="selectHosobyIDdoc" parameterType="com.web.hospital.model.hoso">
         select *

@@ -55,6 +55,7 @@
                         <th scope="col">Ngày Khám</th>
                         <th scope="col">Thành Tiền</th>
                         <th scope="col">Bác Sĩ Khám</th>
+                        <th scope="col">Địa Chỉ Phòng Khám</th>
                         <th scope="col">Lời Nhắn</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -71,9 +72,15 @@
                         <td th:text="${list.day}"></td>
                         <td th:text="${list.mount}"></td>
                         <td th:text="${list.hotenbacsi}"></td>
+                        <td th:text="${list.diachiPhong}"></td>
                         <td th:text="${list.loinhan}"></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{'/deletebooking' +'/'+ ${list.stt}}">Hủy Lịch Khám </a>
+<!--                            nút huy mat khi canCancelMap trả về false-->
+<!--                            <a class="btn btn-sm btn-primary" th:if="${canCancelMap[list.stt]}"-->
+<!--                               th:href="@{'/deletebooking' +'/'+ ${list.stt}}">Hủy Lịch Khám </a>-->
+                            <a th:classappend="${canCancelMap[list.stt]} ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-primary disabled'"
+                               th:href="${canCancelMap[list.stt]} ? '/deletebooking/' + ${list.stt} : '#'"
+                               th:attr="disabled=${!canCancelMap[list.stt]}">Hủy Lịch Khám</a>
                         </td>
                     </tr>
                     </tbody>

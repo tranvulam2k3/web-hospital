@@ -15,6 +15,8 @@ import com.web.hospital.model.doctor;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Controller
@@ -44,8 +46,11 @@ public class checkoutController {
 		Account account = (Account) session.getAttribute("account");
 
 		int maBS = doc.getIdd();
+		int idphong = doc.getIdphong();
 		int id =  account.getId();
-
+		LocalTime timenow = LocalTime.now();
+		booking.setThoigiandat(Time.valueOf(timenow).toLocalTime());
+		System.out.println(booking.getThoigiandat());
 		int saveToDB = bookingMapper.save(bookingInfo.getHotenbenhnhan(),
 				bookingInfo.getNamsinh(),
 				bookingInfo.getGioitinh(),
@@ -57,7 +62,9 @@ public class checkoutController {
 				maBS,
 				bookingInfo.getMount(),
 				bookingInfo.getDay(),
-				id );
+				id,
+				idphong,
+                Time.valueOf(timenow).toLocalTime());
 
 		return "success";
 	}

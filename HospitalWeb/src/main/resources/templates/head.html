@@ -103,7 +103,7 @@
 							<span class="d-none d-lg-inline-flex" th:text="'Bs.'+${session.sessionName}"></span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-							<a href="#" class="dropdown-item">My Profile</a>
+							<a th:href="@{/profile}" class="dropdown-item">My Profile</a>
 							<a href="#" class="dropdown-item">Settings</a>
 							<a th:href="@{/logout}" class="dropdown-item">Log Out</a>
 						</div>

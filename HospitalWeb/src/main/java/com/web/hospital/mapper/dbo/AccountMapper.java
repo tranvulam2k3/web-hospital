@@ -48,7 +48,7 @@ public interface AccountMapper {
 	int updateByExample(@Param("row") Account row, @Param("example") AccountExample example);
 	Account checkLogin(@Param("username") String username , @Param("password") String password);
     Account checkuser(@Param("username") String username);
-    int register(@Param ("username") String username ,@Param("password") String password ,@Param ("name") String name);
+    int register(@Param ("username") String username ,@Param("password") String password ,@Param ("name") String name,@Param ("email") String email);
     List<Account> selectAllAccount();
     
     Account findbyidacc(@Param("id") int id);

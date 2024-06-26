@@ -1,5 +1,8 @@
 package com.web.hospital.controller;
 
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +65,10 @@ public class listLichKhamController {
 	    int maBS = doc.getIdd();
 	    String getnameDoc = doc.getHotenbacsi();
 		int gia = doc.getMount();
-		int saveToDB = bookingMapper.save(booking.getHotenbenhnhan(),
+		int idphong = doc.getIdphong();
+		LocalTime timenow = LocalTime.now();
+		booking.setThoigiandat(Time.valueOf(timenow).toLocalTime());
+		int saveToDB = bookingMapper.savebydoc(booking.getHotenbenhnhan(),
 				booking.getNamsinh(),
 				booking.getGioitinh(),
 				booking.getSdt(),
@@ -73,7 +79,8 @@ public class listLichKhamController {
 				maBS,
 				gia,
 				booking.getDay(),
-				booking.getId() );
+				idphong,
+				Time.valueOf(timenow).toLocalTime());
 		return "redirect:/qllich";
 	}
 }

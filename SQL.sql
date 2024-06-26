@@ -247,8 +247,8 @@ SELECT Booking.Stt , Booking.hoTenBenhNhan, Booking.namSinh, Booking.gioiTinh, B
 		Booking.email, Booking.hoTenBacSi, Booking.day, Booking.loinhan, Booking.mount, Booking.id FROM Booking 
 where stt = 52;
 
-DELETE FROM historylichkham
-where stt = 52
+DELETE FROM booking
+where stt = 56
 
 create table historygiaodich(
 	idgiaodich INT PRIMARY KEY IDENTITY (1,1),
@@ -271,15 +271,30 @@ INNER JOIN ThongTinCaNhan on ThongTinCaNhan.username= Account.username
 	insert into ThongTinCaNhan(username) 
 	values ('nhatkha')
 
+	Địa Chỉ Phòng Khám
 
 select booking.*,phong_kham.dia_chi from booking
-INNER JOIN Doctor on booking.idD = Doctor.idD
-INNER JOIN phong_kham on Doctor.idphong=phong_kham.idphong
-where booking.idD = 2
+INNER JOIN phong_kham on booking.idphong=phong_kham.idphong
+where booking.id = 2
+ORDER BY Stt ASC
+
+ALTER TABLE booking
+DROP COLUMN  thoigiandat;
 
 select Doctor.* , phong_kham.ten_phong_kham from Doctor
 INNER JOIN phong_kham on Doctor.idphong = phong_kham.idphong
 
 select * from Doctor
 select * from booking
+where id =2
 select * from phong_kham
+
+
+SELECT Doctor.*, Khoa.tenKhoa FROM Doctor
+INNER JOIN Khoa ON Doctor.makhoa = Khoa.makhoa
+WHERE hoTenBacSi LIKE '%a%'
+ORDER BY idd
+OFFSET 6
+ROWS FETCH NEXT 6
+ROWS ONLY
+

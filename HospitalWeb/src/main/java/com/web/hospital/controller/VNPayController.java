@@ -18,6 +18,8 @@ import com.web.hospital.mapper.dbo.bookingMapper;
 import com.web.hospital.mapper.dbo.historygiaodichMapper;
 
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Controller
@@ -69,7 +71,11 @@ public class VNPayController {
         Account account = (Account) session.getAttribute("account");
 
         int maBS = doc.getIdd();
+        int idphong = doc.getIdphong();
         int id =  account.getId();
+        LocalTime timenow = LocalTime.now();
+        booking.setThoigiandat(Time.valueOf(timenow).toLocalTime());
+
 
         int saveToDB = bookingMapper.save(bookingInfo.getHotenbenhnhan(),
                                       bookingInfo.getNamsinh(),
@@ -82,10 +88,11 @@ public class VNPayController {
                                       maBS,
                                       bookingInfo.getMount(),
                                       bookingInfo.getDay(),
-                                      id );
+                                      id,
+                                      idphong,
+                                      Time.valueOf(timenow).toLocalTime());
 
-        historygiaodich.setNgaygiaodich(new Date());
-        System.out.println(historygiaodich.getNgaygiaodich());
+
         int inserttoTable = historygiaodichMapper.insertgd(transactionId,historygiaodich.getNgaygiaodich(),bookingInfo.getMount(),id);
         return paymentStatus == 1 ? "ordersuccess" : "orderfail";
     }

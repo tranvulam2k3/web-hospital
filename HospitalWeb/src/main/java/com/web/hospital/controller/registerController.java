@@ -38,7 +38,7 @@ public class registerController {
 			}else {
 				Account checkuser = accountMapper.checkuser(account.getUsername());
 				if(checkuser == null) {
-					int dangki = accountMapper.register(account.getUsername(), account.getPassword(), account.getName());
+					int dangki = accountMapper.register(account.getUsername(), account.getPassword(), account.getName(), account.getEmail());
 					//add username to table thongtincanhan
 					int addusername = thongtincanhanMapper.addusername(account.getUsername());
 					return "login";

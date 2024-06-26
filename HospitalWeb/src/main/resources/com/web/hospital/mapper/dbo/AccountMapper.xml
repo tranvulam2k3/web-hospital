@@ -237,8 +237,8 @@
 		and password = #{password}
 	</select>
 	<insert id="register" parameterType="com.web.hospital.model.Account">
-		INSERT INTO Account (username,[password],[role],[name])
-		VALUES(#{username},#{password},3,#{name})
+		INSERT INTO Account (username,[password],[role],[name],email)
+		VALUES(#{username},#{password},3,#{name},#{email})
 	</insert>
 	<select id="selectAllAccount" parameterType="com.web.hospital.model.Account" resultMap="BaseResultMap">
 		select * from Account

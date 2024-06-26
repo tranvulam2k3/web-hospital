@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class hosoController {
 
-    @Autowired
-    private hosoMapper hosoMapper;
-
-    @Autowired
-    private bookingMapper bookingMapper;
-
-    @Autowired
-    private historylichkhamMapper historylichkhamMapper;
-
-    @PostMapping("/updatebooking")
-    public String update( hoso hoso , @RequestParam("stt") int stt) {
-        int update = hosoMapper.insertHoso(hoso);
-        int inserttoHistory = historylichkhamMapper.insertHistory(stt,"Đã khám bệnh");
-        int delete = bookingMapper.deletebyStt(stt);
-        return "redirect:/qllich";
-    }
+//    @Autowired
+//    private hosoMapper hosoMapper;
+//
+//    @Autowired
+//    private bookingMapper bookingMapper;
+//
+//    @Autowired
+//    private historylichkhamMapper historylichkhamMapper;
+//
+//    @PostMapping("/updatebooking")
+//    public String update( hoso hoso , @RequestParam("stt") int stt) {
+//        int update = hosoMapper.insertHoso(hoso);
+//        int inserttoHistory = historylichkhamMapper.insertHistory(stt,"Đã khám bệnh");
+//        int delete = bookingMapper.deletebyStt(stt);
+//        return "redirect:/qllich";
+//    }
 }

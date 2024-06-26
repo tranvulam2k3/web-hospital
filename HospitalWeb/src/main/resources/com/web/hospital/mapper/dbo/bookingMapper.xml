@@ -292,10 +292,19 @@
 		</if>
 	</update>
 	<insert id="save" parameterType="com.web.hospital.model.booking">
-		INSERT INTO
-		Booking(hoTenBenhNhan,namSinh,gioiTinh,SDT,diaChi,email,hoTenBacSi,ngaydat,loiNhan,idd,mount,day,id)
-		values(#{hotenbenhnhan},#{namsinh},#{gioitinh},#{sdt},#{diachi},#{email},#{hotenbacsi},null,#{loinhan},#{idd},#{mount},#{day},#{id})
+		INSERT INTO Booking(hoTenBenhNhan, namSinh, gioiTinh, SDT, diaChi, email, hoTenBacSi, ngaydat, loiNhan, idd,
+							mount, day, id, idphong , thoigiandat)
+		values (#{hotenbenhnhan}, #{namsinh}, #{gioitinh}, #{sdt}, #{diachi}, #{email}, #{hotenbacsi}, null, #{loinhan},
+				#{idd}, #{mount}, #{day}, #{id}, #{idphong} , #{thoigiandat})
 	</insert>
+
+	<insert id="savebydoc" parameterType="com.web.hospital.model.booking">
+		INSERT INTO Booking(hoTenBenhNhan, namSinh, gioiTinh, SDT, diaChi, email, hoTenBacSi, ngaydat, loiNhan, idd,
+							mount, day, id, idphong , thoigiandat)
+		values (#{hotenbenhnhan}, #{namsinh}, #{gioitinh}, #{sdt}, #{diachi}, #{email}, #{hotenbacsi}, NULL, #{loinhan},
+				#{idd}, #{mount}, #{day}, NULL, #{idphong} , #{thoigiandat})
+	</insert>
+
 	<select id="getnewbooking" parameterType="com.web.hospital.model.booking"
 		resultMap="BaseResultMap">
 		SELECT TOP 1 Booking.*, Doctor.gia
@@ -333,9 +342,13 @@
 	</delete>
 
 	<select id="checkBookingbyID" parameterType="com.web.hospital.model.booking">
-		select * from Booking
-		where id = #{id}
-		ORDER BY Booking.day ASC
+
+		select booking.*, phong_kham.dia_chi AS diachiPhong
+		from booking
+				 INNER JOIN phong_kham on booking.idphong = phong_kham.idphong
+		where booking.id = #{id}
+		ORDER BY Stt ASC
+
 	</select>
 
 </mapper>
