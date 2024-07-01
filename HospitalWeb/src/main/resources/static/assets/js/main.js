@@ -221,4 +221,51 @@
    */
   new PureCounter();
 
+  // Lắng nghe sự kiện khi chọn ngày
+  const dateElement = document.getElementById('day');
+  const timeSelectContainer = document.getElementById('thoigianContainer');
+  const timeSelect = document.getElementById('timeslot');
+
+  dateElement.addEventListener('change', function() {
+    const selectedDate = new Date(dateElement.value);
+
+    // Kiểm tra nếu ngày đã được chọn
+    if (dateElement.value !== '') {
+      timeSelectContainer.style.display = 'block'; // Hiển thị dropdown mốc thời gian
+      updateTimeSlots(selectedDate); // Cập nhật danh sách mốc thời gian
+    } else {
+      timeSelectContainer.style.display = 'none'; // Ẩn dropdown mốc thời gian nếu chưa chọn ngày
+    }
+  });
+
+  function updateTimeSlots(selectedDate) {
+    // Hàm này để cập nhật danh sách mốc thời gian dựa vào selectedDate
+    const availableTimeSlots = getAvailableTimeSlots(selectedDate);
+
+    // Xóa các option cũ trong select box
+    timeSelect.innerHTML = '<option value="">Chọn mốc thời gian</option>';
+
+    // Thêm các option mới vào select box
+    availableTimeSlots.forEach(slot => {
+      const option = document.createElement('option');
+      option.value = slot.value;
+      option.textContent = slot.label;
+      timeSelect.appendChild(option);
+    });
+  }
+
+  function getAvailableTimeSlots(selectedDate) {
+    // Giả sử logic xử lý để lấy danh sách mốc thời gian khả dụng từ backend
+    // Ví dụ đơn giản, trả về mảng các đối tượng { value: '8-9', label: '8h - 9h' }
+    // Thực tế, bạn cần thay thế bằng logic gọi API hoặc xử lý dữ liệu từ backend
+    return [
+      { value: '8-9', label: '8h - 9h' },
+      { value: '9-10', label: '9h - 10h' },
+      { value: '10-11', label: '10h - 11h' },
+      { value: '14-15', label: '14h - 15h' },
+      { value: '15-16', label: '15h - 16h' },
+      { value: '16-17', label: '16h - 17h' }
+    ];
+  }
+
 })()

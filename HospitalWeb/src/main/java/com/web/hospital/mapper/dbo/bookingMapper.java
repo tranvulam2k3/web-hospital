@@ -73,9 +73,9 @@ public interface bookingMapper {
     int save(@Param("hotenbenhnhan") String hotenbenhnhan, @Param("namsinh") String namsinh, @Param("gioitinh") String gioitinh,
     		@Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,
     		@Param("hotenbacsi") String hotenbacsi,@Param("loinhan") String loinhan,@Param("idd") int idd,@Param("mount") int mount,
-            @Param("day") Date day,@Param("id") int id, @Param("idphong") int idphong, @Param("thoigiandat") LocalTime thoigiandat);
-//    int save(@Param("booking") booking booking);
-    booking getnewbooking();
+            @Param("day") Date day,@Param("id") int id, @Param("idphong") int idphong, @Param("thoigiandat") LocalTime thoigiandat,
+             @Param("timeslot") String timeslot);
+
     List<booking> listBookingByidD(@Param("idd") int idd);
     booking findbystt(@Param("stt") int stt);
     int updateBooking(@Param("hotenbenhnhan") String hotenbenhnhan,@Param("namsinh") String namsinh,@Param("gioitinh") String gioitinh,
@@ -89,4 +89,7 @@ public interface bookingMapper {
              @Param("sdt") String sdt,@Param("diachi") String diachi,@Param("email") String email,
              @Param("hotenbacsi") String hotenbacsi,@Param("loinhan") String loinhan,@Param("idd") int idd,@Param("mount") int mount,
              @Param("day") Date day, @Param("idphong") int idphong, @Param("thoigiandat") LocalTime thoigiandat);
+
+    //
+    List<String> checkSlottime(@Param("day") Date day,@Param("idd") int idd);
 }

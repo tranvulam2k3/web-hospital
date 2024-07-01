@@ -293,9 +293,9 @@
 	</update>
 	<insert id="save" parameterType="com.web.hospital.model.booking">
 		INSERT INTO Booking(hoTenBenhNhan, namSinh, gioiTinh, SDT, diaChi, email, hoTenBacSi, ngaydat, loiNhan, idd,
-							mount, day, id, idphong , thoigiandat)
+							mount, day, id, idphong , thoigiandat, timeslot)
 		values (#{hotenbenhnhan}, #{namsinh}, #{gioitinh}, #{sdt}, #{diachi}, #{email}, #{hotenbacsi}, null, #{loinhan},
-				#{idd}, #{mount}, #{day}, #{id}, #{idphong} , #{thoigiandat})
+				#{idd}, #{mount}, #{day}, #{id}, #{idphong} , #{thoigiandat} , #{timeslot})
 	</insert>
 
 	<insert id="savebydoc" parameterType="com.web.hospital.model.booking">
@@ -350,5 +350,9 @@
 		ORDER BY Stt ASC
 
 	</select>
-
+	<select id="checkSlottime" resultType="String">
+		select timeslot from booking
+		where day = #{day}
+		AND idD = #{idd}
+	</select>
 </mapper>

@@ -30,6 +30,7 @@
 
 	<!-- Template Main CSS File -->
 	<link th:href="@{/assets/css/style.css}" rel="stylesheet">
+	<script th:src="@{/assets/js/main.js}"></script>
 
 </head>
 
@@ -39,8 +40,8 @@
 	<section id="hero" class="d-flex align-items-center">
 		<div class="container">
 			<h1>Welcome to Medilab</h1>
-			<h2>We are team of talented designers making websites with Bootstrap</h2>
-			<a href="#about" class="btn-get-started scrollto">Get Started</a>
+			<h2>Chào mừng bạn đến với Bệnh viện Đại Học Duy Tân</h2>
+			<a href="#about" class="btn-get-started scrollto">Bắt Đầu</a>
 		</div>
 	</section><!-- End Hero -->
 
@@ -53,12 +54,15 @@
 				<div class="row">
 					<div class="col-lg-4 d-flex align-items-stretch">
 						<div class="content">
-							<h3>Why Choose Medilab?</h3>
+							<h3>Tại sao chọn Medilab?</h3>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-								Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus
-								optio ad corporis.
+								Medpro, UMC – Đăng Ký Khám Bệnh Online là các ứng dụng thông minh giúp bạn quản lý sức khỏe
+								cá nhân một cách dễ dàng và hiệu quả. Với triết lý lấy người dùng làm trung tâm,
+								Bệnh viện Đại học Duy Tân cùng với Mepro đã thiết kế ứng dụng này để mang đến trải nghiệm
+								tốt nhất cho bạn thông qua sự
+								kết hợp của nhiều công nghệ số khác nhau và các quy trình quản trị tại cơ sở y tế, phù hợp
+								với môi trường chăm sóc sức khỏe mở,
+								linh hoạt và trực tuyến.
 							</p>
 							<div class="text-center">
 								<a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -71,25 +75,23 @@
 								<div class="col-xl-4 d-flex align-items-stretch">
 									<div class="icon-box mt-4 mt-xl-0">
 										<i class="bx bx-receipt"></i>
-										<h4>Corporis voluptates sit</h4>
-										<p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut
-											aliquip</p>
+										<h4>Đội Ngũ Bác Sĩ Đông Đảo, Chuyên Môn Cao</h4>
+										<p>Đội ngũ của chúng tôi gồm các Bác sĩ phương Tây về thần kinh cột sống, vật lý trị
+											liệu và các chuyên gia chăm sóc sức khỏe khác.</p>
 									</div>
 								</div>
 								<div class="col-xl-4 d-flex align-items-stretch">
 									<div class="icon-box mt-4 mt-xl-0">
 										<i class="bx bx-cube-alt"></i>
-										<h4>Ullamco laboris ladore pan</h4>
-										<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-											deserunt</p>
+										<h4>Hỗ Trợ 24/24, Nhiệt Tình, Thân Thiện</h4>
+										<p>Các chuyên gia tư vấn sức khỏe miễn phí 24/24 đều có trình độ chuyên môn.</p>
 									</div>
 								</div>
 								<div class="col-xl-4 d-flex align-items-stretch">
 									<div class="icon-box mt-4 mt-xl-0">
 										<i class="bx bx-images"></i>
-										<h4>Labore consequatur</h4>
-										<p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis
-											facere</p>
+										<h4>Chứng Nhận Quốc Tế</h4>
+										<p>ISO 15189:2012 - Tiêu chuẩn quốc tế cho các phòng xét nghiệm y tế</p>
 									</div>
 								</div>
 							</div>
@@ -105,10 +107,9 @@
 			<div class="container">
 
 				<div class="section-title">
-					<h2>Make an Appointment</h2>
-					<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-						sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-						ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+					<h2>ĐẶT LỊCH</h2>
+					<p>Đội ngũ của chúng tôi gồm các Bác sĩ phương Tây về thần kinh cột sống, vật lý trị
+						liệu và các chuyên gia chăm sóc sức khỏe khác.</p>
 				</div>
 
 				<form th:action="@{/checkout}" method="post" id="myForm">
@@ -158,7 +159,14 @@
 							<input type="date" name="day" class="form-control datepicker" id="day" required>
 							<div class="validate"></div>
 						</div>
-
+						<div class="col-md-4 form-group" id="thoigianContainer" style="display: none;">
+							<select name="timeslot" id="timeslot" class="form-select">
+								<option value="">Chọn mốc thời gian</option>
+								<!-- Các option sẽ được thêm bằng JavaScript sau khi chọn ngày -->
+							</select>
+							<div class="validate"></div>
+							<div class="error" id="errorSlot"></div>
+						</div>
 						<div class="col-md-4 form-group mt-3 mt-md-0">
 							<input name="hotenbacsi" id="hotenbacsi" class="form-control datepicker"
 								th:value="'Bs.'+${doc.hotenbacsi}" readonly="true">
@@ -181,14 +189,83 @@
 						<button type="submit">ĐẶT LỊCH</button>
 					</div>
 				</form>
+<!--				<script>-->
+<!--					document.getElementById('myForm').addEventListener('submit', function(event) {-->
+<!--						const selectElement = document.getElementById('department');-->
+<!--						const dateElement = document.getElementById('day');-->
+<!--						let valid = true;-->
+
+<!--						// Validate gender selection-->
+<!--						const genderValidateDiv = selectElement.nextElementSibling;-->
+<!--						if (selectElement.value === '') {-->
+<!--							genderValidateDiv.innerHTML = '<span class="error">Vui lòng chọn giới tính</span>';-->
+<!--							valid = false;-->
+<!--						} else {-->
+<!--							genderValidateDiv.innerHTML = '';-->
+<!--						}-->
+
+<!--						// Validate date selection-->
+<!--						const dateValidateDiv = dateElement.nextElementSibling;-->
+<!--						const selectedDate = new Date(dateElement.value);-->
+<!--						const today = new Date();-->
+<!--						today.setHours(0, 0, 0, 0);  // Set time to midnight to only compare dates-->
+
+<!--						if (dateElement.value === '') {-->
+<!--							dateValidateDiv.innerHTML = '<span class="error">Vui lòng chọn ngày</span>';-->
+<!--							valid = false;-->
+<!--						} else if (selectedDate < today) {-->
+<!--							dateValidateDiv.innerHTML = '<span class="error">Ngày được chọn đã qua, vui lòng chọn ngày khác</span>';-->
+<!--							valid = false;-->
+<!--						} else {-->
+<!--							dateValidateDiv.innerHTML = '';-->
+<!--						}-->
+
+<!--						// If any validation failed, prevent form submission-->
+<!--						if (!valid) {-->
+<!--							event.preventDefault();-->
+<!--						}-->
+<!--					});-->
+<!--				</script>-->
+<!--				<script>-->
+<!--					document.getElementById('myForm').addEventListener('submit', function(event) {-->
+<!--						event.preventDefault(); // Ngăn chặn hành động mặc định của form-->
+
+<!--						// Lấy thông tin từ form-->
+<!--						const formData = new FormData(this);-->
+
+<!--						// Gửi yêu cầu AJAX để kiểm tra mốc thời gian-->
+<!--						fetch('/check-timeslot', {-->
+<!--							method: 'POST',-->
+<!--							body: formData-->
+<!--						})-->
+<!--								.then(response => response.json())-->
+<!--								.then(data => {-->
+<!--									if (data.errorSlot) {-->
+<!--										// Hiển thị thông báo lỗi-->
+<!--										const errorSlotElement = document.getElementById('errorSlot');-->
+<!--										errorSlotElement.innerHTML = data.errorSlot;-->
+<!--									} else {-->
+<!--										// Nếu không có lỗi, submit form-->
+<!--										this.submit();-->
+<!--									}-->
+<!--								})-->
+<!--								.catch(error => {-->
+<!--									console.error('Error:', error);-->
+<!--								});-->
+<!--					});-->
+<!--				</script>-->
 				<script>
 					document.getElementById('myForm').addEventListener('submit', function(event) {
+						event.preventDefault(); // Prevent form's default submission action
+
 						const selectElement = document.getElementById('department');
 						const dateElement = document.getElementById('day');
+						const genderValidateDiv = selectElement.nextElementSibling;
+						const dateValidateDiv = dateElement.nextElementSibling;
+
 						let valid = true;
 
 						// Validate gender selection
-						const genderValidateDiv = selectElement.nextElementSibling;
 						if (selectElement.value === '') {
 							genderValidateDiv.innerHTML = '<span class="error">Vui lòng chọn giới tính</span>';
 							valid = false;
@@ -197,7 +274,6 @@
 						}
 
 						// Validate date selection
-						const dateValidateDiv = dateElement.nextElementSibling;
 						const selectedDate = new Date(dateElement.value);
 						const today = new Date();
 						today.setHours(0, 0, 0, 0);  // Set time to midnight to only compare dates
@@ -212,15 +288,36 @@
 							dateValidateDiv.innerHTML = '';
 						}
 
-						// If any validation failed, prevent form submission
-						if (!valid) {
+						if (valid) {
+							// Gather form data
+							const formData = new FormData(this);
+
+							// AJAX request to check time slot
+							fetch('/check-timeslot', {
+								method: 'POST',
+								body: formData
+							})
+									.then(response => response.json())
+									.then(data => {
+										if (data.errorSlot) {
+											// Display error message
+											const errorSlotElement = document.getElementById('errorSlot');
+											errorSlotElement.innerHTML = data.errorSlot;
+										} else {
+											// No errors, submit the form
+											this.submit();
+										}
+									})
+									.catch(error => {
+										console.error('Error:', error);
+									});
+						} else {
 							event.preventDefault();
 						}
 					});
 				</script>
-
 			</div>
-		</section><!-- End Appointment Section -->
+		</section>
 
 
 
@@ -229,10 +326,9 @@
 			<div class="container">
 
 				<div class="section-title">
-					<h2>Gallery</h2>
-					<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-						sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-						ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+					<h2>DỊCH VỤ</h2>
+					<p>Bệnh viện hướng tới phục vụ đông đảo khách hàng, người bệnh với giá thành hợp lý, nhiều chính sách ưu
+						đãi về chi phí, hỗ trợ trả góp không lãi suất cho nhiều dịch vụ khám chữa bệnh.</p>
 				</div>
 			</div>
 
@@ -313,10 +409,9 @@
 			<div class="container">
 
 				<div class="section-title">
-					<h2>Contact</h2>
-					<p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
-						sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
-						ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+					<h2>Liên hệ</h2>
+					<p>Medpro là nền tảng công nghệ kết nối người dân với Cơ sở - Dịch vụ Y tế hàng đầu tại Việt Nam,
+						mang lại giải pháp tiếp cận khách hàng tiềm năng và phù hợp nhu cầu thực tế</p>
 				</div>
 			</div>
 
@@ -333,8 +428,8 @@
 						<div class="info">
 							<div class="address">
 								<i class="bi bi-geo-alt"></i>
-								<h4>Location:</h4>
-								<p>A108 Adam Street, New York, NY 535022</p>
+								<h4>Địa chỉ:</h4>
+								<p>123 Nguyễn Tri Phương, TP Đà Nẵng</p>
 							</div>
 
 							<div class="email">
@@ -410,30 +505,30 @@
 					</div>
 
 					<div class="col-lg-2 col-md-6 footer-links">
-						<h4>Useful Links</h4>
+						<h4>Liên kết hữu ích</h4>
 						<ul>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Trang chủ</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Giới thiệu</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Dịch vụ</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Điều khoản dịch vụ</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Chính sách bảo mật</a></li>
 						</ul>
 					</div>
 
 					<div class="col-lg-3 col-md-6 footer-links">
-						<h4>Our Services</h4>
+						<h4>Dịch vụ của chúng tôi</h4>
 						<ul>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Thiết kế Web</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Phát triển Web</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Xây dựng Web</a></li>
 							<li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="#">Thiết kế đồ họa</a></li>
 						</ul>
 					</div>
 
 					<div class="col-lg-4 col-md-6 footer-newsletter">
-						<h4>Join Our Newsletter</h4>
-						<p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+						<h4>Tham gia bản tin của chúng tôi</h4>
+						<p>Các chuyên gia tư vấn sức khỏe miễn phí 24/24 đều có trình độ chuyên môn.</p>
 						<form action="" method="post">
 							<input type="email" name="email"><input type="submit" value="Subscribe">
 						</form>

@@ -19,6 +19,7 @@ import com.web.hospital.mapper.dbo.historygiaodichMapper;
 
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -54,18 +55,22 @@ public class VNPayController {
     public String paymentCompleted(HttpServletRequest request, Model model, booking booking, historygiaodich historygiaodich) {
         int paymentStatus = vnPayService.orderReturn(request);
 
+        // Get data by VNPAY service
         String orderInfo = request.getParameter("vnp_OrderInfo");
         String paymentTime = request.getParameter("vnp_PayDate");
         String transactionId = request.getParameter("vnp_TransactionNo");
         String totalPrice = request.getParameter("vnp_Amount");
 
+        // Add data de chuyen huong den View
         model.addAttribute("orderId", orderInfo);
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("paymentTime", paymentTime);
         model.addAttribute("transactionId", transactionId);
 
+        // khai báo session
         HttpSession session = request.getSession();
 
+        // get Session
         booking bookingInfo = (booking) session.getAttribute("bookingInfo");
         doctor doc = (doctor) session.getAttribute("doctor");
         Account account = (Account) session.getAttribute("account");
@@ -73,10 +78,12 @@ public class VNPayController {
         int maBS = doc.getIdd();
         int idphong = doc.getIdphong();
         int id =  account.getId();
+
+        // get thoi gian hien tai
         LocalTime timenow = LocalTime.now();
         booking.setThoigiandat(Time.valueOf(timenow).toLocalTime());
 
-
+        //save to DataBase
         int saveToDB = bookingMapper.save(bookingInfo.getHotenbenhnhan(),
                                       bookingInfo.getNamsinh(),
                                       bookingInfo.getGioitinh(),
@@ -90,10 +97,15 @@ public class VNPayController {
                                       bookingInfo.getDay(),
                                       id,
                                       idphong,
-                                      Time.valueOf(timenow).toLocalTime());
+                                      Time.valueOf(timenow).toLocalTime(),
+                                      bookingInfo.getTimeslot());
 
+        //Lay ra ngay hien tai
+        LocalDate currentDate = LocalDate.now();
 
-        int inserttoTable = historygiaodichMapper.insertgd(transactionId,historygiaodich.getNgaygiaodich(),bookingInfo.getMount(),id);
+        // Save to DataBase Table LichSuGiaoDich
+        int inserttoTable = historygiaodichMapper.insertgd(transactionId,bookingInfo.getDay(),bookingInfo.getMount(),id);
+        model.addAttribute("getday", currentDate);
         return paymentStatus == 1 ? "ordersuccess" : "orderfail";
     }
 }

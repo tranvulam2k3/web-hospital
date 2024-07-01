@@ -18,11 +18,9 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class accountAdminController {
 	
-	
 	@Autowired
 	AccountMapper accountMapper;
-	
-	
+
 	@GetMapping("accountlist")
 	public String accountList(Model model) {
 		List<Account> list = accountMapper.selectAllAccount();
@@ -36,16 +34,19 @@ public class accountAdminController {
 		model.addAttribute("list", list);
 		return"editAccount";
 	}
+
 	@PostMapping("/updateaccount")
 	public String update(Model model, Account account) {
 		int update = accountMapper.updateacc(account.getUsername(), account.getPassword(), account.getRole(), account.getName(), account.getId());
 		return "redirect:/accountlist";		
 	}
+
 	@RequestMapping("/deleteaccount/{id}")
 	public String deletebyID(Model model , @PathVariable("id") int id) {
 		int delete = accountMapper.deletebyidacc(id);
 		return "redirect:/accountlist";
 	}
+
 	@GetMapping("/acctaikhoanmoi")
 	public String showadd() {
 		return "addAccount";
@@ -56,4 +57,5 @@ public class accountAdminController {
 		int add = accountMapper.addacc(account.getUsername(), account.getPassword(), account.getRole(), account.getName());
 		return "redirect:/accountlist";
 	}
+
 }
