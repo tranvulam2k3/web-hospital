@@ -46,8 +46,8 @@ public class checkBookingController {
             Duration duration = Duration.between(bookingtime, timenow);
             //chuyen ve phut
             long minutesSinceBooking = duration.toMinutes();
-
-            canCancelMap.put(listbooking.getStt(), minutesSinceBooking <= 15);
+            System.out.println(minutesSinceBooking);
+            canCancelMap.put(listbooking.getStt(), minutesSinceBooking <= 5);
         }
         model.addAttribute("canCancelMap", canCancelMap);
         return "checkBooking";

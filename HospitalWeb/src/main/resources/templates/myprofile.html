@@ -31,13 +31,13 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Họ và Tên *</label>
                                     <input type="text" name="hoten" class="form-control" placeholder="" aria-label="First name"
-                                           th:value="${profile.hoten}">
+                                           th:value="${profile.hoten}" required>
                                 </div>
                                 <!-- Last name -->
                                 <div class="col-md-6">
                                     <label class="form-label">Giới Tính *</label>
                                     <div class="col-md-4 form-group">
-                                        <select name="gioitinh" id="department" class="form-select">
+                                        <select name="gioitinh" id="department" class="form-select" required>
                                             <option value="NULL" th:selected="${profile.gioitinh == 'Giới Tính'}">Giới Tính</option>
                                             <option value="Nam" th:selected="${profile.gioitinh == 'Nam'}">Nam</option>
                                             <option value="Nữ" th:selected="${profile.gioitinh == 'Nữ'}">Nữ</option>
@@ -49,13 +49,13 @@
                                 <div class="col-md-6">
                                     <label class="form-label">Số Điện Thoại *</label>
                                     <input type="text" name="sdt" class="form-control" placeholder="" aria-label="Phone number"
-                                           th:value="${profile.sdt}">
+                                           th:value="${profile.sdt}" required>
                                 </div>
                                 <!-- Mobile number -->
                                 <div class="col-md-12">
                                     <label class="form-label">Ngày/Tháng/Năm Sinh *</label>
                                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                                        <input type="date" name="ngaysinh" class="form-control datepicker" th:value="${profile.ngaysinh}">
+                                        <input type="date" name="ngaysinh" class="form-control datepicker" th:value="${profile.ngaysinh}" required>
                                         <div class="validate"></div>
                                     </div>
                                 </div>
@@ -63,13 +63,13 @@
                                 <div class="col-md-6">
                                     <label for="inputEmail4" class="form-label">Email *</label>
                                     <input type="email" name="email" class="form-control" id="inputEmail4"
-                                           th:value="${profile.email}">
+                                           th:value="${profile.email}" required>
                                 </div>
                                 <!-- Skype -->
                                 <div class="col-md-6">
                                     <label class="form-label">Địa Chỉ *</label>
                                     <input type="text" name="diachi" class="form-control" placeholder=""
-                                           th:value="${profile.diachi}">
+                                           th:value="${profile.diachi}" required>
                                 </div>
                             </div> <!-- Row END -->
                         </div>
